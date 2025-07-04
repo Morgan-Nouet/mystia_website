@@ -343,3 +343,32 @@ header, main, footer {
     padding: 16px 7vw;
   }
 }
+@media (max-width: 700px) {
+  header {
+    flex-direction: row !important; /* on force la ligne même en mobile */
+    align-items: center !important;
+    justify-content: space-between;
+    height: 70px;
+    padding: 10px 8px 10px 12px; /* moins de padding à droite/gauche */
+  }
+  .logo {
+    font-size: 2em;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 1;
+  }
+  .header-actions {
+    margin-left: 0;
+    gap: 7px;
+  }
+  .lang-switch {
+    font-size: 1em;
+    padding: 6px 14px;
+    margin-right: 0;
+  }
+  .burger {
+    width: 38px;
+    height: 38px;
+  }
+}
+
