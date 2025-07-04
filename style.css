@@ -1,6 +1,7 @@
 :root {
   --main-bg: #101836;
   --accent: #ffe180;
+  --title : #fff;
   --card-bg: #20294d;
   --text-main: #fff;
   --text-accent: #ffe180;
@@ -211,7 +212,7 @@ section {
   margin-bottom: 20px;
 }
 h1, h2 {
-  color: var(--accent);
+  color: var(--title);
   margin-top: 0;
   font-weight: 700;
   text-shadow: 0 2px 8px #0003;
@@ -317,3 +318,35 @@ header, main, footer {
     padding: 16px 7vw;
   }
 }
+
+
+footer {
+  background: var(--footer-bg);
+  border-top: 1px solid #222b46;
+  color: #bfc5df;
+  font-size: 0.97em;
+  margin-top: 60px;
+  flex-shrink: 0;
+
+  /* Centrage parfait */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px; /* adapte la hauteur si tu veux */
+  padding: 0;
+}
+
+.footer-link {
+  color: #bfc5df;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 20px 0;
+  display: inline-block;
+}
+.footer-link:hover {
+  color: var(--accent);
+}
+
