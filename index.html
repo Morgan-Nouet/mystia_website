@@ -11,17 +11,30 @@
 
 <body>
     <canvas id="bg-stars"></canvas>
+
+    <!-- NOUVEAU HEADER ICI -->
     <header>
         <div class="logo">Mystia</div>
-        <nav>
-            <a href="index.html" class="active" data-i18n="menu_home">Accueil</a>
-            <a href="cgu.html" data-i18n="menu_cgu">CGU</a>
-            <a href="privacy.html" data-i18n="menu_privacy">Politique de Confidentialité</a>
+        <div class="header-actions">
+            <button class="lang-switch" id="langBtn">
+                <span id="flagIcon" aria-label="switch language" style="font-size:1.15em;">FR 🇫🇷</span>
+            </button>
+            <button id="burgerBtn" class="burger" aria-label="menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="nav-desktop">
+            <a href="index.html" data-i18n="menu_home">Home</a>
+            <a href="cgu.html" data-i18n="menu_cgu">Terms of Use</a>
+            <a href="privacy.html" data-i18n="menu_privacy">Privacy Policy</a>
             <a href="contact.html" data-i18n="menu_contact">Contact</a>
         </nav>
-        <button class="lang-switch" id="langBtn">
-            <span id="flagIcon" aria-label="switch language" style="font-size:1.15em;">EN 🇬🇧</span>
-        </button>
+        <nav class="nav-mobile hide" id="navMobile">
+            <a href="index.html" data-i18n="menu_home">Home</a>
+            <a href="cgu.html" data-i18n="menu_cgu">Terms of Use</a>
+            <a href="privacy.html" data-i18n="menu_privacy">Privacy Policy</a>
+            <a href="contact.html" data-i18n="menu_contact">Contact</a>
+        </nav>
     </header>
 
     <main>
@@ -41,6 +54,49 @@
         </div>
     </footer>
 
+    <!-- MENU BURGER JS -->
+    <script>
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navMobile = document.getElementById('navMobile');
+        if (burgerBtn && navMobile) {
+            let menuOpen = false;
+            function openMenu() {
+                navMobile.classList.remove('hide');
+                menuOpen = true;
+            }
+            function closeMenu() {
+                navMobile.classList.add('hide');
+                menuOpen = false;
+            }
+            burgerBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (menuOpen) closeMenu();
+                else openMenu();
+            });
+
+            navMobile.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    closeMenu();
+                    // Pour certains navigateurs mobiles récalcitrants :
+                    window.location.href = this.getAttribute('href');
+                });
+            });
+
+
+            document.addEventListener('click', function (e) {
+                if (menuOpen && !navMobile.contains(e.target) && e.target !== burgerBtn) {
+                    closeMenu();
+                }
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 700) closeMenu();
+            });
+            // Par défaut, menu caché
+            navMobile.classList.add('hide');
+        }
+    </script>
+
+    <!-- LANG SWITCH JS + TRADUCTIONS -->
     <script>
         const translations = {
             fr: {
@@ -71,7 +127,7 @@
             }
         }
 
-        let currentLang = navigator.language.startsWith("en") ? "en" : "fr";
+        let currentLang = localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
         function setLang(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
@@ -84,11 +140,15 @@
         }
 
         document.getElementById('langBtn').addEventListener('click', function () {
-            setLang(currentLang === 'fr' ? 'en' : 'fr');
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('mystiaLang', newLang);
+            setLang(newLang);
         });
 
         setLang(currentLang);
     </script>
+
+    <!-- STARS BACKGROUND -->
     <script>
         (function () {
             const canvas = document.getElementById('bg-stars');
@@ -96,9 +156,9 @@
             let w = window.innerWidth, h = window.innerHeight;
             let stars = [];
             let shootingStars = [];
-            let nextShooting = Date.now() + 2000 + Math.random() * 4000; // premier passage entre 2s et 6s
+            let nextShooting = Date.now() + 2000 + Math.random() * 4000;
 
-            const STAR_COUNT = Math.max(120, Math.floor(w * h / 2500)); // adapte le nombre selon la taille d'écran
+            const STAR_COUNT = Math.max(120, Math.floor(w * h / 2500));
 
             function resize() {
                 w = window.innerWidth;
@@ -108,10 +168,9 @@
             }
 
             function addShootingStar() {
-                // L'étoile filante partira d'un point haut (gauche ou droite), vers l'autre côté
                 const fromLeft = Math.random() > 0.5;
-                const yStart = Math.random() * h * 0.5 + h * 0.1; // entre 10% et 60% hauteur
-                const length = 180 + Math.random() * 120;
+                const yStart = Math.random() * h * 0.5 + h * 0.1;
+                const length = 800 + Math.random() * 800;
                 shootingStars.push({
                     x: fromLeft ? -50 : w + 50,
                     y: yStart,
@@ -124,11 +183,8 @@
                 });
             }
 
-
             function createStars() {
-
                 stars = [];
-
                 for (let i = 0; i < STAR_COUNT; i++) {
                     stars.push({
                         x: Math.random() * w,
@@ -141,34 +197,8 @@
                 }
             }
 
-            /*function drawStars() {
-                ctx.clearRect(0, 0, w, h);
-                for (const s of stars) {
-                    ctx.save();
-                    ctx.globalAlpha = s.opacity;
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fillStyle = "#fffbe8"; // couleur des étoiles (blanc-jaune pâle)
-                    ctx.shadowColor = "#fffbe8";
-                    ctx.shadowBlur = 12;
-                    ctx.fill();
-                    ctx.restore();
-
-                    // Move
-                    s.x += s.vx;
-                    s.y += s.vy;
-
-                    // Rebond ou reset si hors écran
-                    if (s.x < 0) s.x = w;
-                    if (s.x > w) s.x = 0;
-                    if (s.y < 0) s.y = h;
-                    if (s.y > h) s.y = 0;
-                }
-                requestAnimationFrame(drawStars);
-            }*/
             function drawStars() {
                 ctx.clearRect(0, 0, w, h);
-                // Etoiles normales
                 for (const s of stars) {
                     ctx.save();
                     ctx.globalAlpha = s.opacity;
@@ -188,7 +218,6 @@
                     if (s.y > h) s.y = 0;
                 }
 
-                // Shooting stars
                 for (let i = shootingStars.length - 1; i >= 0; i--) {
                     let s = shootingStars[i];
                     ctx.save();
@@ -209,27 +238,22 @@
                     s.traveled += Math.sqrt(s.vx * s.vx + s.vy * s.vy);
                     s.alpha -= 0.008;
 
-                    // Retirer l'étoile filante si elle a parcouru assez de distance ou est devenue transparente
                     if (s.traveled > s.length || s.alpha <= 0) shootingStars.splice(i, 1);
                 }
 
-                // Ajoute une nouvelle étoile filante de temps en temps
                 if (Date.now() > nextShooting) {
                     addShootingStar();
-                    // prochaine étoile filante dans 2 à 6 secondes
-                    nextShooting = Date.now() + 2000 + Math.random() * 4000;
+                    nextShooting = Date.now() + 4000 + Math.random() * 4000;
                 }
 
                 requestAnimationFrame(drawStars);
             }
-
 
             window.addEventListener('resize', function () {
                 resize();
                 createStars();
             });
 
-            // Init
             resize();
             createStars();
             drawStars();

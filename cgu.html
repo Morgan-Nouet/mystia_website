@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -7,18 +8,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <div class="logo">Mystia</div>
-    <nav>
-      <a href="index.html" data-i18n="menu_home">Accueil</a>
-      <a href="cgu.html" class="active" data-i18n="menu_cgu">CGU</a>
-      <a href="privacy.html" data-i18n="menu_privacy">Politique de Confidentialité</a>
+    <div class="header-actions">
+      <button class="lang-switch" id="langBtn">
+        <span id="flagIcon" aria-label="switch language" style="font-size:1.15em;">FR 🇫🇷</span>
+      </button>
+      <button id="burgerBtn" class="burger" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-desktop">
+      <a href="index.html" data-i18n="menu_home">Home</a>
+      <a href="cgu.html" data-i18n="menu_cgu">Terms of Use</a>
+      <a href="privacy.html" data-i18n="menu_privacy">Privacy Policy</a>
       <a href="contact.html" data-i18n="menu_contact">Contact</a>
     </nav>
-    <button class="lang-switch" id="langBtn">
-      <span id="flagIcon" aria-label="switch language" style="font-size:1.15em;">EN 🇬🇧</span>
-    </button>
+    <nav class="nav-mobile hide" id="navMobile">
+      <a href="index.html" data-i18n="menu_home">Home</a>
+      <a href="cgu.html" data-i18n="menu_cgu">Terms of Use</a>
+      <a href="privacy.html" data-i18n="menu_privacy">Privacy Policy</a>
+      <a href="contact.html" data-i18n="menu_contact">Contact</a>
+    </nav>
   </header>
 
   <main>
@@ -26,7 +39,8 @@
       <h1 data-i18n="cgu_title">Conditions Générales d’Utilisation</h1>
       <div data-i18n="cgu_placeholder">
         (Exemple de texte. Ici viendront les CGU officielles de Mystia.<br>
-        Mystia est une application de cartomancie assistée par intelligence artificielle, disponible sur Android et Apple Store.)
+        Mystia est une application de cartomancie assistée par intelligence artificielle, disponible sur Android et
+        Apple Store.)
       </div>
     </section>
   </main>
@@ -38,7 +52,45 @@
       © 2024 Mystia. Tous droits réservés.
     </div>
   </footer>
+  <!-- MENU BURGER JS -->
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navMobile = document.getElementById('navMobile');
+    if (burgerBtn && navMobile) {
+      let menuOpen = false;
+      function openMenu() {
+        navMobile.classList.remove('hide');
+        menuOpen = true;
+      }
+      function closeMenu() {
+        navMobile.classList.add('hide');
+        menuOpen = false;
+      }
+      burgerBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (menuOpen) closeMenu();
+        else openMenu();
+      });
 
+      navMobile.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function (e) {
+          closeMenu();
+
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (menuOpen && !navMobile.contains(e.target) && e.target !== burgerBtn) {
+          closeMenu();
+        }
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 700) closeMenu();
+      });
+      // Par défaut, menu caché
+      navMobile.classList.add('hide');
+    }
+  </script>
   <script>
     const translations = {
       fr: {
@@ -62,12 +114,13 @@
     };
     function updateLangBtn(lang) {
       const flagIcon = document.getElementById('flagIcon');
-      if(flagIcon) {
-        if(lang === 'fr') flagIcon.textContent = "EN 🇬🇧";
+      if (flagIcon) {
+        if (lang === 'fr') flagIcon.textContent = "EN 🇬🇧";
         else flagIcon.textContent = "FR 🇫🇷";
       }
     }
-    let currentLang = navigator.language.startsWith("en") ? "en" : "fr";
+    //let currentLang = navigator.language.startsWith("en") ? "en" : "fr";
+    let currentLang = localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
     function setLang(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -78,10 +131,14 @@
         if (html) el.innerHTML = html;
       });
     }
-    document.getElementById('langBtn').addEventListener('click', function() {
-      setLang(currentLang === 'fr' ? 'en' : 'fr');
+    document.getElementById('langBtn').addEventListener('click', function () {
+      const newLang = currentLang === 'fr' ? 'en' : 'fr';
+      localStorage.setItem('mystiaLang', newLang);
+      setLang(newLang);
     });
+
     setLang(currentLang);
   </script>
 </body>
+
 </html>
