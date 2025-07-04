@@ -5,9 +5,9 @@
   --card-bg: #20294d;
   --text-main: #fff;
   --text-accent: #ffe180;
-  --footer-bg: #171f3a;
-  --menu-bg: #101836f2;
-  --btn-bg: #ffe180;
+  --footer-bg: #0e1427f2;
+  --menu-bg: #0e1427f2;
+  --btn-bg: #5f6270;
   --btn-txt: #101836;
 }
 
@@ -39,7 +39,7 @@ header {
   z-index: 10;
   padding-left: 24px;
   padding-right: 20px; /* Réduit pour éviter le débordement */
-  border-bottom: 1px solid #25315a;
+  border-bottom: 1px solid #474b5f;
   box-sizing: border-box;
 }
 
@@ -278,7 +278,7 @@ footer {
   font-size: 0.97em;
   text-align: center;
   margin-top: 60px;
-  border-top: 1px solid #222b46;
+  border-top: 1px solid #474b5f;;
   flex-shrink: 0;
 }
 
