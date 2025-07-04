@@ -1,7 +1,7 @@
 :root {
   --main-bg: #101836;
   --accent: #ffe180;
-  --title : #fff;
+  --title: #fff;
   --card-bg: #2b3e68;
   --text-main: #fff;
   --text-accent: #ffe180;
@@ -10,8 +10,6 @@
   --btn-bg: #5f6270;
   --btn-txt: #101836;
 }
-
-/* ----------- GENERAL ----------- */
 
 html, body {
   height: 100%;
@@ -28,8 +26,7 @@ body {
   flex-direction: column;
 }
 
-/* ----------- HEADER ----------- */
-
+/* HEADER */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -39,9 +36,9 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  z-index: 100;
-  padding-left: 24px;
-  padding-right: 20px;
+  z-index: 20;
+  padding-left: 16px;
+  padding-right: 12px;
   border-bottom: 1px solid #474b5f;
   box-sizing: border-box;
 }
@@ -84,14 +81,14 @@ nav.nav-desktop a.active {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   margin-left: 0;
 }
 
 /* Bouton switch langue */
 .lang-switch {
   background: var(--btn-bg);
-  color: var(--btn-txt);
+  color: var(--text-main);
   border: none;
   border-radius: 20px;
   font-weight: bold;
@@ -107,7 +104,7 @@ nav.nav-desktop a.active {
   min-width: unset;
   max-width: 210px;
   white-space: nowrap;
-  margin-right: 6px;
+  margin-right: 0;
 }
 .lang-switch:hover {
   background: #fff7d4;
@@ -126,7 +123,7 @@ nav.nav-desktop a.active {
   border: none;
   border-radius: 9px;
   cursor: pointer;
-  z-index: 2001;
+  z-index: 1100;
   transition: background 0.2s;
   margin-left: 0;
 }
@@ -134,32 +131,48 @@ nav.nav-desktop a.active {
   display: block;
   width: 22px;
   height: 3.2px;
-  background: var(--btn-txt);
+  background: var(--title);
   border-radius: 2px;
   transition: 0.3s;
 }
 
-/* ----------- MENU MOBILE ----------- */
-
+/* Mobile navigation (menu burger) */
 nav.nav-mobile {
   display: none;
 }
 
-/* MENU MOBILE & RESPONSIVE */
 @media (max-width: 700px) {
-  nav.nav-desktop {
-    display: none;
+  header {
+    padding: 0 0 0 0;
+    height: 62px;
+    justify-content: flex-start;
+    gap: 0;
   }
-  .burger {
-    display: flex;
+  .logo {
+    font-size: 2.1em;
+    margin: 0 0 0 14px;
   }
   .header-actions {
     margin-left: auto;
+    gap: 10px;
+    padding-right: 10px;
+  }
+  .lang-switch {
+    font-size: 0.98em;
+    padding: 5px 15px;
+  }
+  nav.nav-desktop {
+    display: none !important;
+  }
+  .burger {
+    display: flex;
+    z-index: 1200;
+    margin-right: 0;
   }
   nav.nav-mobile {
     position: fixed;
-    top: 62px;
-    right: 16px;
+    top: 56px;
+    right: 8px;
     background: var(--card-bg);
     box-shadow: 0 4px 32px #0007;
     border-radius: 16px;
@@ -167,7 +180,7 @@ nav.nav-mobile {
     flex-direction: column;
     gap: 0;
     padding: 13px 7px 13px 7px;
-    z-index: 3000 !important; /* Toujours au-dessus */
+    z-index: 1500;
     min-width: 180px;
     opacity: 1;
     visibility: visible;
@@ -175,7 +188,7 @@ nav.nav-mobile {
   nav.nav-mobile a {
     color: var(--text-main);
     text-decoration: none;
-    font-size: 1.11em;
+    font-size: 1.05em;
     padding: 11px 17px;
     border-radius: 9px;
     margin-bottom: 2px;
@@ -189,10 +202,8 @@ nav.nav-mobile {
   nav.nav-mobile.hide {
     display: none !important;
   }
-  .burger {
-    z-index: 3100; /* Au-dessus du menu pour cliquer dessus */
-  }
 }
+
 /* Hide burger et mobile nav sur desktop */
 @media (min-width: 701px) {
   nav.nav-mobile, .burger {
@@ -200,7 +211,7 @@ nav.nav-mobile {
   }
 }
 
-/* ----------- MAIN CONTENT ----------- */
+/* CONTENU PRINCIPAL */
 main {
   padding: 90px 20px 30px 20px;
   max-width: 780px;
@@ -210,7 +221,7 @@ main {
 section {
   background: var(--card-bg);
   border-radius: 18px;
-  box-shadow: 0 2px 32px rgb(58, 67, 83);
+  box-shadow: 0 6px 44px #21304e99;
   padding: 36px 26px;
   margin-bottom: 20px;
   z-index: 2;
@@ -232,7 +243,7 @@ h2 {
 
 .home-title {
   color: #fff;
-  font-size: 2.8em;
+  font-size: 2.4em;
   font-weight: 800;
   letter-spacing: 2px;
   margin-bottom: 10px;
@@ -241,7 +252,7 @@ h2 {
   text-align: center;
 }
 .home-desc {
-  font-size: 1.23em;
+  font-size: 1.18em;
   color: var(--accent);
   margin-bottom: 25px;
   margin-top: 6px;
@@ -275,8 +286,7 @@ h2 {
   letter-spacing: 0.02em;
 }
 
-/* ----------- FOOTER ----------- */
-
+/* --------- FOOTER --------- */
 footer {
   background: var(--footer-bg);
   border-top: 1px solid #222b46;
@@ -284,15 +294,12 @@ footer {
   font-size: 0.97em;
   margin-top: 60px;
   flex-shrink: 0;
-
-  /* Centrage parfait */
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 70px;
   padding: 0;
 }
-
 .footer-link {
   color: #bfc5df;
   text-decoration: underline;
@@ -307,7 +314,7 @@ footer {
   color: var(--accent);
 }
 
-/* ----------- CANVAS (BACKGROUND STARS) ----------- */
+/* --- BACKGROUND STARS --- */
 #bg-stars {
   position: fixed;
   top: 0; left: 0;
@@ -319,56 +326,56 @@ footer {
   background: transparent;
 }
 
-/* ----------- LAYERS (pour garantir l'ordre) ----------- */
+/* ensure content above background */
 header, main, footer {
   position: relative;
   z-index: 2;
 }
 
-/* ----------- Responsive petits téléphones ----------- */
+/* --------- RESPONSIVE POUR MOBILE --------- */
 @media (max-width: 600px) {
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 14px 10px;
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    padding: 0 0 0 0;
   }
   .logo {
-    font-size: 2em;
-  }
-  main {
-    padding: 110px 4vw 10vw 4vw;
-  }
-  section {
-    padding: 16px 7vw;
-  }
-}
-@media (max-width: 700px) {
-  header {
-    flex-direction: row !important; /* on force la ligne même en mobile */
-    align-items: center !important;
-    justify-content: space-between;
-    height: 70px;
-    padding: 10px 8px 10px 12px; /* moins de padding à droite/gauche */
-  }
-  .logo {
-    font-size: 2em;
-    margin-bottom: 0;
-    margin-top: 0;
-    line-height: 1;
+    font-size: 1.7em;
+    margin: 0 0 0 10px;
   }
   .header-actions {
-    margin-left: 0;
-    gap: 7px;
+    padding-right: 6px;
+    gap: 6px;
   }
   .lang-switch {
-    font-size: 1em;
-    padding: 6px 14px;
-    margin-right: 0;
+    font-size: 0.96em;
+    padding: 4px 10px;
   }
-  .burger {
-    width: 38px;
-    height: 38px;
+  main {
+    padding: 78px 4vw 10vw 4vw;
+  }
+  section {
+    padding: 13px 6vw;
+    border-radius: 13px;
+    font-size: 0.97em;
+  }
+  h1 {
+    font-size: 1.55em;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 1.18em;
+    margin-bottom: 12px;
+  }
+  .home-title {
+    font-size: 1.75em;
+    margin-bottom: 10px;
+    margin-top: 14px;
+  }
+  .home-desc {
+    font-size: 1em;
+    margin-bottom: 20px;
+    margin-top: 4px;
   }
 }
-
