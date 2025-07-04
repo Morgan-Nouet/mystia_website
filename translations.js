@@ -1,0 +1,37 @@
+// translations.js
+window.translations = {
+    fr: {
+        menu_home: "Accueil",
+        menu_cgu: "CGU",
+        menu_privacy: "Politique de Confidentialité",
+        menu_contact: "Contact",
+        home_title: "Mystia",
+        home_desc: "L’application de cartomancie assistée par intelligence artificielle.<br>Mystia vous accompagne dans la découverte de vous-même et la lecture des cartes, avec la puissance de l’IA.",
+        legal_mentions: "Mentions légales : Mystia, application de cartomancie assistée par IA.<br>Éditeur : Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2024 Mystia. Tous droits réservés.",
+        cgu_title: "Conditions Générales d'Utilisation",
+        cgu_placeholder: "(Exemple de texte. Ici viendront les CGU officielles de Mystia.Mystia est une application de cartomancie assistée par intelligence artificielle, disponible sur Android et Apple Store.)",
+        privacy_title: "Politique de Confidentialité",
+        privacy_placeholder: "Exemple de texte. La politique de confidentialité expliquera comment vos données sont protégées sur Mystia.)",
+        contact_title: "Nous Contacter",
+        contact_email_label:"Adresse e-mail :",
+        mention_title: "Mentions légales",
+        mention_placeholder : "Mystia, application de cartomancie assistée par IA. Éditeur : Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France. © 2024 Mystia. Tous droits réservés.",
+    },
+    en: {
+        menu_home: "Home",
+        menu_cgu: "Terms of Use",
+        menu_privacy: "Privacy Policy",
+        menu_contact: "Contact",
+        home_title: "Mystia",
+        home_desc: "The AI-powered cartomancy app.<br>Mystia helps you discover yourself and read the cards, with the power of artificial intelligence.",
+        legal_mentions: "Legal Notice: Mystia, AI-assisted cartomancy application.<br>Publisher: Mystia Team, contact@mystia.eu. Hosting: OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2024 Mystia. All rights reserved.",
+        cgu_title: "Terms of Use",
+        cgu_placeholder: "(Example text. Here will come the official Terms of Use for Mystia. Mystia is an AI-assisted cartomancy application, available on Android and Apple Store.)",
+        privacy_title: "Privacy Policy",
+        privacy_placeholder: "Example text. The privacy policy will explain how your data is protected on Mystia.)",
+        contact_title: "Contact Us",
+        contact_email_label: "Email Address:",
+        mention_title: "Legal Mentions",
+        mention_placeholder: "Mystia, AI-assisted cartomancy application. Publisher: Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France. © 2024 Mystia. All rights reserved.",
+    }
+};
