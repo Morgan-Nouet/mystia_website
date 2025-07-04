@@ -2,7 +2,7 @@
   --main-bg: #101836;
   --accent: #ffe180;
   --title : #fff;
-  --card-bg: #20294d;
+  --card-bg: #2b3e68;
   --text-main: #fff;
   --text-accent: #ffe180;
   --footer-bg: #0e1427f2;
@@ -10,6 +10,8 @@
   --btn-bg: #5f6270;
   --btn-txt: #101836;
 }
+
+/* ----------- GENERAL ----------- */
 
 html, body {
   height: 100%;
@@ -26,7 +28,8 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
+/* ----------- HEADER ----------- */
+
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -36,13 +39,12 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  z-index: 10;
+  z-index: 100;
   padding-left: 24px;
-  padding-right: 20px; /* Réduit pour éviter le débordement */
+  padding-right: 20px;
   border-bottom: 1px solid #474b5f;
   box-sizing: border-box;
 }
-
 
 /* Logo Mystia à gauche */
 .logo {
@@ -124,7 +126,7 @@ nav.nav-desktop a.active {
   border: none;
   border-radius: 9px;
   cursor: pointer;
-  z-index: 50;
+  z-index: 2001;
   transition: background 0.2s;
   margin-left: 0;
 }
@@ -137,10 +139,8 @@ nav.nav-desktop a.active {
   transition: 0.3s;
 }
 
-/* Mobile navigation (menu burger) */
-nav.nav-mobile {
-  display: flex;
-}
+/* ----------- MENU MOBILE ----------- */
+
 nav.nav-mobile {
   display: none;
 }
@@ -167,7 +167,7 @@ nav.nav-mobile {
     flex-direction: column;
     gap: 0;
     padding: 13px 7px 13px 7px;
-    z-index: 40;
+    z-index: 3000 !important; /* Toujours au-dessus */
     min-width: 180px;
     opacity: 1;
     visibility: visible;
@@ -189,6 +189,9 @@ nav.nav-mobile {
   nav.nav-mobile.hide {
     display: none !important;
   }
+  .burger {
+    z-index: 3100; /* Au-dessus du menu pour cliquer dessus */
+  }
 }
 /* Hide burger et mobile nav sur desktop */
 @media (min-width: 701px) {
@@ -197,7 +200,7 @@ nav.nav-mobile {
   }
 }
 
-/* CONTENU PRINCIPAL */
+/* ----------- MAIN CONTENT ----------- */
 main {
   padding: 90px 20px 30px 20px;
   max-width: 780px;
@@ -207,9 +210,10 @@ main {
 section {
   background: var(--card-bg);
   border-radius: 18px;
-  box-shadow: 0 2px 32px #0002;
+  box-shadow: 0 2px 32px rgb(58, 67, 83);
   padding: 36px 26px;
   margin-bottom: 20px;
+  z-index: 2;
 }
 h1, h2 {
   color: var(--title);
@@ -271,54 +275,7 @@ h2 {
   letter-spacing: 0.02em;
 }
 
-footer {
-  background: var(--footer-bg);
-  padding: 30px 20px 12px 20px;
-  color: #bfc5df;
-  font-size: 0.97em;
-  text-align: center;
-  margin-top: 60px;
-  border-top: 1px solid #474b5f;;
-  flex-shrink: 0;
-}
-
-/* background stars animation (canvas) */
-#bg-stars {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  display: block;
-  pointer-events: none;
-  background: transparent;
-}
-
-/* ensure content above background */
-header, main, footer {
-  position: relative;
-  z-index: 2;
-}
-
-/* Responsive pour petits téléphones */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    height: auto;
-    padding: 14px 10px;
-  }
-  .logo {
-    font-size: 2em;
-  }
-  main {
-    padding: 110px 4vw 10vw 4vw;
-  }
-  section {
-    padding: 16px 7vw;
-  }
-}
-
+/* ----------- FOOTER ----------- */
 
 footer {
   background: var(--footer-bg);
@@ -332,7 +289,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 70px; /* adapte la hauteur si tu veux */
+  min-height: 70px;
   padding: 0;
 }
 
@@ -350,3 +307,39 @@ footer {
   color: var(--accent);
 }
 
+/* ----------- CANVAS (BACKGROUND STARS) ----------- */
+#bg-stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* ----------- LAYERS (pour garantir l'ordre) ----------- */
+header, main, footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* ----------- Responsive petits téléphones ----------- */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 14px 10px;
+  }
+  .logo {
+    font-size: 2em;
+  }
+  main {
+    padding: 110px 4vw 10vw 4vw;
+  }
+  section {
+    padding: 16px 7vw;
+  }
+}
