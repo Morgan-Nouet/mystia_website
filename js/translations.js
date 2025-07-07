@@ -15,7 +15,7 @@ window.translations = {
         contact_title: "Nous Contacter",
         contact_email_label:"Adresse e-mail :",
         mention_title: "Mentions légales",
-        mention_placeholder : "Mystia, application de cartomancie assistée par IA. Éditeur : Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France. © 2024 Mystia. Tous droits réservés.",
+        mention_placeholder : "Éditeur : Martin DUPONT — Entrepreneur Individuel (EI).\n\nNom commercial : Garias Studio.\n\nAdresse de domiciliation : 10 rue des Apps, 75000 Paris\n\nTél. : +33 (0)9 72 12 34 56 (du lun. au ven. 9h-12h)\n\nE-mail : support@appfolio.dev\n\nDirecteur de la publication : M. DUPONT\n\nHébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2024 Mystia.Tous droits réservés.",
     },
     en: {
         menu_home: "Home",
@@ -32,6 +32,6 @@ window.translations = {
         contact_title: "Contact Us",
         contact_email_label: "Email Address:",
         mention_title: "Legal Mentions",
-        mention_placeholder: "Mystia, AI-assisted cartomancy application. Publisher: Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France. © 2024 Mystia. All rights reserved.",
+        mention_placeholder: "Publisher: Mystia Team, contact@mystia.eu.\n\nHébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2024 Mystia. All rights reserved.",
     }
 };

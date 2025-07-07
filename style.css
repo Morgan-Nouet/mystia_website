@@ -398,3 +398,6 @@ header, main, footer {
   border-radius: 4px;
 }
 
+.legal-details {
+  white-space: pre-line;
+}
