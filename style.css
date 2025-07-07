@@ -379,3 +379,22 @@ header, main, footer {
     margin-top: 4px;
   }
 }
+#pdf-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+#pdf-container canvas {
+  width: 100% !important;  /* rend responsive */
+  height: auto !important;
+  display: block;
+  margin-bottom: 2rem;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+

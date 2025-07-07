@@ -30,14 +30,62 @@
 
   </header>
 
-  <main>
-    <section>
-      <h1 data-i18n="privacy_title">Politique de Confidentialité</h1>
-      <div data-i18n="privacy_placeholder">
-        (Exemple de texte. La politique de confidentialité expliquera comment vos données sont protégées sur Mystia.)
-      </div>
-    </section>
-  </main>
+  <div id="pdf-container"></div>
+
+  <script type="module">
+    import * as pdfjsLib from '/js/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.mjs';
+
+    const container = document.getElementById('pdf-container');
+
+    function getLang() {
+      // Tu peux aussi stocker la langue dans localStorage selon ton système
+      return localStorage.getItem('lang') || 'fr';
+    }
+
+    function loadPDF(lang) {
+      container.innerHTML = ''; // Vide les anciens canvas si on change de langue
+      const url = `/terms/cgu_mystia_${lang}.pdf`;
+
+      const loadingTask = pdfjsLib.getDocument(url);
+      loadingTask.promise.then(pdf => {
+        const totalPages = pdf.numPages;
+
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+          pdf.getPage(pageNum).then(page => {
+            const scale = window.innerWidth < 768 ? 0.9 : 1.5;
+            const viewport = page.getViewport({ scale });
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            container.appendChild(canvas);
+
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            page.render(renderContext);
+          });
+        }
+      }).catch(error => {
+        container.innerHTML = `<p style="color: red;">Erreur lors du chargement du PDF.</p>`;
+        console.error(error);
+      });
+    }
+
+    const currentLang = getLang();
+    loadPDF(currentLang);
+
+    // Gère le clic sur le bouton de langue
+    const langBtn = document.getElementById('langBtn');
+    langBtn.addEventListener('click', () => {
+      const newLang = currentLang === 'fr' ? 'en' : 'fr';
+      localStorage.setItem('lang', newLang);
+      location.reload(); // recharge la page pour prendre en compte la langue partout
+    });
+  </script>
   <nav class="nav-mobile hide" id="navMobile">
     <a href="index.html" data-i18n="menu_home">Accueil</a>
     <a href="cgu.html" data-i18n="menu_cgu">CGU</a>
@@ -47,8 +95,8 @@
   <footer>
     <a href="mentions.html" class="footer-link" data-i18n="mention_title">Mentions légales</a>
   </footer>
-  <script src="translations.js"></script>
-  <script src="mystia.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/mystia.js"></script>
 
 
 </body>
