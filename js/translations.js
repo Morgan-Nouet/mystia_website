@@ -7,7 +7,7 @@ window.translations = {
         menu_contact: "Contact",
         home_title: "Mystia",
         home_desc: "L’application de cartomancie assistée par intelligence artificielle.<br>Mystia vous accompagne dans la découverte de vous-même et la lecture des cartes, avec la puissance de l’IA.",
-        legal_mentions: "Mentions légales : Mystia, application de cartomancie assistée par IA.<br>Éditeur : Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2024 Mystia. Tous droits réservés.",
+        legal_mentions: "Mentions légales : Mystia, application de cartomancie assistée par IA.<br>Éditeur : Mystia Team, contact@mystia.eu. Hébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2026 Mystia. Tous droits réservés.",
         cgu_title: "Conditions Générales d'Utilisation",
         cgu_placeholder: "(Exemple de texte. Ici viendront les CGU officielles de Mystia.Mystia est une application de cartomancie assistée par intelligence artificielle, disponible sur Android et Apple Store.)",
         privacy_title: "Politique de Confidentialité",
@@ -15,7 +15,7 @@ window.translations = {
         contact_title: "Nous Contacter",
         contact_email_label:"Adresse e-mail :",
         mention_title: "Mentions légales",
-        mention_placeholder : "Éditeur : Martin DUPONT — Entrepreneur Individuel (EI).\n\nNom commercial : Garias Studio.\n\nAdresse de domiciliation : 10 rue des Apps, 75000 Paris\n\nTél. : +33 (0)9 72 12 34 56 (du lun. au ven. 9h-12h)\n\nE-mail : support@appfolio.dev\n\nDirecteur de la publication : M. DUPONT\n\nHébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2024 Mystia.Tous droits réservés.",
+        mention_placeholder : "Éditeur : Monsieur Morgan NOUËT, agissant sous le nom commercial Garias Interactive, dans le cadre d’un Contrat d’Appui au Projet d’Entreprise (CAPE) conclu avec la couveuse ODACIO.\n\nNom commercial : Garias Interactive.\n\nSupport juridique et social (Responsable légal) : ODACIO – COUVEUSE D’ENTREPRENEURS DE CHARENTE-MARITIME SAS au capital de 62 000 € Siège social : 2 RUE BRAILLE, 17000 LA ROCHELLE SIREN : 433 497 310 (RCS La Rochelle) N° TVA Intracommunautaire : FR41433497310\n\nTél. : +33 (0)6 88 71 41 05 (du lun. au ven. 9h-12h)\n\nE-mail : my.mystia.contact@gmail.com\n\nDirecteur de la publication : M. Morgan NOUËT\n\nHébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2026 Mystia.Tous droits réservés.",
     },
     en: {
         menu_home: "Home",
@@ -24,7 +24,7 @@ window.translations = {
         menu_contact: "Contact",
         home_title: "Mystia",
         home_desc: "The AI-powered cartomancy app.<br>Mystia helps you discover yourself and read the cards, with the power of artificial intelligence.",
-        legal_mentions: "Legal Notice: Mystia, AI-assisted cartomancy application.<br>Publisher: Mystia Team, contact@mystia.eu. Hosting: OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2024 Mystia. All rights reserved.",
+        legal_mentions: "Legal Notice: Mystia, AI-assisted cartomancy application.<br>Publisher: Mystia Team, contact@mystia.eu. Hosting: OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.<br>© 2026 Mystia. All rights reserved.",
         cgu_title: "Terms of Use",
         cgu_placeholder: "(Example text. Here will come the official Terms of Use for Mystia. Mystia is an AI-assisted cartomancy application, available on Android and Apple Store.)",
         privacy_title: "Privacy Policy",
@@ -32,6 +32,5 @@ window.translations = {
         contact_title: "Contact Us",
         contact_email_label: "Email Address:",
         mention_title: "Legal Mentions",
-        mention_placeholder: "Publisher: Mystia Team, contact@mystia.eu.\n\nHébergeur : OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2024 Mystia. All rights reserved.",
-    }
+        mention_placeholder : "Publisher: Mr. Morgan NOUËT, acting under the trade name Garias Interactive, within the framework of a Business Project Support Contract (CAPE) concluded with the ODACIO business incubator.\n\nTrade name: Garias Interactive.\n\nLegal and Social Support (Legal Entity): ODACIO – COUVEUSE D’ENTREPRENEURS DE CHARENTE-MARITIME SAS with a capital of €62,000. Registered Office: 2 RUE BRAILLE, 17000 LA ROCHELLE, FRANCE. SIREN: 433 497 310 (RCS La Rochelle). Intra-community VAT number: FR41433497310.\n\nTel.: +33 (0)6 88 71 41 05 (Mon. to Fri. 9am-12pm)\n\nEmail: my.mystia.contact@gmail.com\n\nDirector of Publication: Mr. Morgan NOUËT\n\nHosting Provider: OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2026 Mystia. All rights reserved.",    }
 };
