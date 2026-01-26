@@ -71,6 +71,22 @@ header {
   user-select: none;
 }
 
+.home-app-badges {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.app-badge {
+  height: 70px;
+  opacity: 0.95;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0006;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
 /* Menu desktop centré */
 nav.nav-desktop {
   flex: 1 1 0;
@@ -353,21 +369,6 @@ h2 {
   text-align: left;
 }
 
-.home-app-badges {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.app-badge {
-  height: 42px;
-  opacity: 0.95;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0006;
-}
-
 .contact-address {
   font-size: 1.15em;
   color: var(--text-main);
@@ -437,10 +438,26 @@ footer {
     padding: 0 0 0 0;
   }
 
+  .home-app-badges {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .app-badge {
+    height: 45px;
+    width: auto;
+  }
+
   .logo {
     font-size: 1.7em;
     margin: 0 0 0 10px;
     font-family: "Griffy", cursive;
+  }
+
+  .home-logo {
+    width: 75%;
+    max-width: 120px;
   }
 
   .header-actions {
@@ -484,6 +501,23 @@ footer {
     margin-bottom: 20px;
     margin-top: 4px;
   }
+
+  .home-subtitle {
+    font-size: 1.1em;
+    padding: 0 10px;
+  }
+
+  .home-features-title {
+    font-size: 1.3em;
+    padding: 0 10px;
+  }
+
+  .home-subtitle-desc {
+    font-size: 1em;
+  }
+
+
+  
 }
 
 #pdf-container {
@@ -511,21 +545,8 @@ footer {
   white-space: pre-line;
 }
 
-.home-app-badges {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
 
-.app-badge {
-  height: 70px;
-  opacity: 0.95;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px #0006;
-  transition: transform 0.2s, opacity 0.2s;
-}
+
 
 .app-badge:hover {
   opacity: 1;
