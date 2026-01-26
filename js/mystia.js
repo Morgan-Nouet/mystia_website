@@ -266,3 +266,61 @@
     scheduleShootingStar();
     requestAnimationFrame(draw);
 })();
+
+//LANG SWITCH JS + TRADUCTIONS 
+const translations = window.translations;
+
+function updateLangBtn(lang) {
+    const flagIcon = document.getElementById('flagIcon');
+    if (flagIcon) {
+        if (lang === 'fr') {
+            // En français → afficher drapeau français
+            flagIcon.innerHTML = 'FR <img src="img/fr.svg" alt="Drapeau français" style="height:1.2em;vertical-align:middle;">';
+        } else {
+            // En anglais → afficher drapeau anglais
+            flagIcon.innerHTML = 'EN <img src="img/gb.svg" alt="UK flag" style="height:1.2em;vertical-align:middle;">';
+        }
+    }
+}
+
+let currentLang = localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
+
+function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    updateLangBtn(lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations && translations[lang] && translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+}
+
+const langBtn = document.getElementById('langBtn');
+if (langBtn) {
+    langBtn.addEventListener('click', function () {
+        const newLang = currentLang === 'fr' ? 'en' : 'fr';
+        localStorage.setItem('mystiaLang', newLang);
+        setLang(newLang);
+    });
+}
+
+// Initialiser la langue au chargement
+setLang(currentLang);
+
+// Met à jour l'onglet actif en fonction de la page
+(function () {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav.nav-desktop a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+            (path === '' && href === 'index.html') ||
+            (path === href)
+        ) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+})();
