@@ -1,95 +1,27 @@
-//MENU BURGER JS 
-const burgerBtn = document.getElementById('burgerBtn');
-const navMobile = document.getElementById('navMobile');
-if (burgerBtn && navMobile) {
-    let menuOpen = false;
-    function openMenu() {
-        navMobile.classList.remove('hide');
-        menuOpen = true;
-    }
-    function closeMenu() {
-        navMobile.classList.add('hide');
-        menuOpen = false;
-    }
-    burgerBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (menuOpen) closeMenu();
-        else openMenu();
-    });
-
-    navMobile.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function (e) {
-            closeMenu();
-            // Pour certains navigateurs mobiles récalcitrants :
-            window.location.href = this.getAttribute('href');
-        });
-    });
-
-
-    document.addEventListener('click', function (e) {
-        if (menuOpen && !navMobile.contains(e.target) && e.target !== burgerBtn) {
-            closeMenu();
-        }
-    });
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 700) closeMenu();
-    });
-    // Par défaut, menu caché
-    navMobile.classList.add('hide');
-}
-
-//ANG SWITCH JS + TRADUCTIONS 
-const translations = window.translations;
-
-
-function updateLangBtn(lang) {
-    const flagIcon = document.getElementById('flagIcon');
-    if (flagIcon) {
-        if (lang === 'fr') {
-            // Quand on est en français, on propose de passer à l’anglais
-            flagIcon.innerHTML = 'FR <img src="img/fr.svg" alt="Drapeau français" style="height:1.2em;vertical-align:middle;">';
-        } else {
-            // Quand on est en anglais, on propose de passer au français
-
-            flagIcon.innerHTML = 'EN <img src="img/gb.svg" alt="UK flag" style="height:1.2em;vertical-align:middle;">';
-        }
-    }
-}
-
-
-let currentLang = localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
-function setLang(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    updateLangBtn(lang);
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        let html = translations[lang][key];
-        if (html) el.innerHTML = html;
-    });
-}
-
-
-
-
-document.getElementById('langBtn').addEventListener('click', function () {
-    const newLang = currentLang === 'fr' ? 'en' : 'fr';
-    localStorage.setItem('mystiaLang', newLang);
-    setLang(newLang);
-});
-
-setLang(currentLang);
-
-//STARS BACKGROUND
+//STARS BACKGROUND - Flutter Style
 (function () {
     const canvas = document.getElementById('bg-stars');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let w = window.innerWidth, h = window.innerHeight;
     let stars = [];
-    let shootingStars = [];
-    let nextShooting = Date.now() + 2000 + Math.random() * 4000;
+    let animationValue = 0;
+    let shootingStar = null;
+    let shootingStarProgress = 0;
+    let shootingStarActive = false;
 
-    const STAR_COUNT = Math.max(120, Math.floor(w * h / 2500));
+    const isHomePage = window.location.pathname.endsWith('index.html') ||
+        window.location.pathname === '/' ||
+        window.location.pathname.endsWith('/');
+    const STAR_COUNT = isHomePage ? 80 : 30;
+
+    // Couleurs du gradient Flutter
+    const gradientColors = isHomePage
+        ? ['#0a3050', '#115083', '#318aad', '#115083', '#0a3050']
+        : ['#318aad', '#165b94', '#061e31'];
+    const gradientStops = isHomePage
+        ? [0.0, 0.25, 0.5, 0.75, 1.0]
+        : [0, 0.4, 0.9];
 
     function resize() {
         w = window.innerWidth;
@@ -98,112 +30,239 @@ setLang(currentLang);
         canvas.height = h;
     }
 
-    function addShootingStar() {
-        const fromLeft = Math.random() > 0.5;
-        const yStart = Math.random() * h * 0.5 + h * 0.1;
-        const length = 800 + Math.random() * 800;
-        shootingStars.push({
-            x: fromLeft ? -50 : w + 50,
-            y: yStart,
-            vx: fromLeft ? 7 + Math.random() * 5 : -(7 + Math.random() * 5),
-            vy: 2 + Math.random() * 1.5,
-            alpha: 1,
-            length: length,
-            traveled: 0,
-            width: 2 + Math.random() * 2
-        });
-    }
-
-    function createStars() {
+    // Générer les étoiles avec détection de collision
+    function generateStars() {
         stars = [];
+        const maxAttempts = 1000;
+
         for (let i = 0; i < STAR_COUNT; i++) {
-            stars.push({
-                x: Math.random() * w,
-                y: Math.random() * h,
-                r: Math.random() * 0.8 + 0.3,
-                vx: (Math.random() - 0.5) * 0.20,
-                vy: (Math.random() - 0.5) * 0.20,
-                opacity: Math.random() * 0.5 + 0.5
-            });
+            let newStar = null;
+            let attempts = 0;
+
+            while (newStar === null && attempts < maxAttempts) {
+                const candidateX = Math.random();
+                const candidateY = Math.random();
+                const candidateSize = Math.random() * 4 + 1; // Taille entre 1 et 5
+
+                const candidate = {
+                    x: candidateX,
+                    y: candidateY,
+                    size: candidateSize,
+                    opacity: Math.random() * 0.8 + 0.2,
+                    animationOffset: Math.random() * 2 * Math.PI
+                };
+
+                // Vérifier les collisions
+                let hasCollision = false;
+                for (const existingStar of stars) {
+                    if (starsCollide(candidate, existingStar)) {
+                        hasCollision = true;
+                        break;
+                    }
+                }
+
+                if (!hasCollision) {
+                    newStar = candidate;
+                }
+                attempts++;
+            }
+
+            if (newStar) {
+                stars.push(newStar);
+            }
         }
     }
 
-    function drawStars() {
-        ctx.clearRect(0, 0, w, h);
-        for (const s of stars) {
-            ctx.save();
-            ctx.globalAlpha = s.opacity;
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-            ctx.fillStyle = "#fffbe8";
-            ctx.shadowColor = "#fffbe8";
-            ctx.shadowBlur = 12;
-            ctx.fill();
-            ctx.restore();
+    function starsCollide(star1, star2) {
+        const distance = Math.sqrt(
+            Math.pow(star1.x - star2.x, 2) + Math.pow(star1.y - star2.y, 2)
+        );
+        const minDistance = (star1.size + star2.size) * 0.015 + 0.02;
+        return distance < minDistance;
+    }
 
-            s.x += s.vx;
-            s.y += s.vy;
-            if (s.x < 0) s.x = w;
-            if (s.x > w) s.x = 0;
-            if (s.y < 0) s.y = h;
-            if (s.y > h) s.y = 0;
+    // Dessiner une étoile en forme de croix à 4 branches
+    function drawCrossStar(x, y, size, opacity) {
+        ctx.save();
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+
+        const outerRadius = size * 1.2;
+        const innerRadius = size * 0.4;
+
+        ctx.beginPath();
+        for (let i = 0; i < 8; i++) {
+            const angle = (i * Math.PI / 4);
+            const radius = i % 2 === 0 ? outerRadius : innerRadius;
+            const px = x + radius * Math.cos(angle);
+            const py = y + radius * Math.sin(angle);
+
+            if (i === 0) {
+                ctx.moveTo(px, py);
+            } else {
+                ctx.lineTo(px, py);
+            }
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+    }
+
+    // Créer une étoile filante
+    function createShootingStar() {
+        let startX, startY, endX, endY;
+        const direction = Math.floor(Math.random() * 4);
+
+        switch (direction) {
+            case 0: // Du haut gauche vers bas droite
+                startX = -0.2;
+                startY = Math.random() * 0.3;
+                endX = 1.2;
+                endY = startY + 0.7 + Math.random() * 0.3;
+                break;
+            case 1: // Du haut droite vers bas gauche
+                startX = 1.2;
+                startY = Math.random() * 0.3;
+                endX = -0.2;
+                endY = startY + 0.7 + Math.random() * 0.3;
+                break;
+            case 2: // Du haut vers bas (légèrement incliné)
+                startX = 0.2 + Math.random() * 0.6;
+                startY = -0.1;
+                endX = startX + (Math.random() - 0.5) * 0.4;
+                endY = 1.1;
+                break;
+            default: // Diagonal classique
+                startX = -0.1;
+                startY = 0.1 + Math.random() * 0.3;
+                endX = 1.1;
+                endY = startY + 0.5 + Math.random() * 0.4;
         }
 
-        for (let i = shootingStars.length - 1; i >= 0; i--) {
-            let s = shootingStars[i];
-            ctx.save();
-            ctx.globalAlpha = s.alpha;
-            let grad = ctx.createLinearGradient(s.x, s.y, s.x - s.vx * 10, s.y - s.vy * 10);
-            grad.addColorStop(0, "#fffbe8");
-            grad.addColorStop(1, "rgba(255,255,230,0)");
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = s.width;
-            ctx.beginPath();
-            ctx.moveTo(s.x, s.y);
-            ctx.lineTo(s.x - s.vx * s.length / 10, s.y - s.vy * s.length / 10);
-            ctx.stroke();
-            ctx.restore();
+        shootingStar = {
+            startX, startY, endX, endY,
+            length: 0.08 + Math.random() * 0.04
+        };
+        shootingStarProgress = 0;
+        shootingStarActive = true;
+    }
 
-            s.x += s.vx;
-            s.y += s.vy;
-            s.traveled += Math.sqrt(s.vx * s.vx + s.vy * s.vy);
-            s.alpha -= 0.008;
+    // Dessiner l'étoile filante
+    function drawShootingStar() {
+        if (!shootingStar || !shootingStarActive) return;
 
-            if (s.traveled > s.length || s.alpha <= 0) shootingStars.splice(i, 1);
+        const currentX = shootingStar.startX + (shootingStar.endX - shootingStar.startX) * shootingStarProgress;
+        const currentY = shootingStar.startY + (shootingStar.endY - shootingStar.startY) * shootingStarProgress;
+
+        const trailStartX = currentX - (shootingStar.endX - shootingStar.startX) * shootingStar.length;
+        const trailStartY = currentY - (shootingStar.endY - shootingStar.startY) * shootingStar.length;
+
+        const currentPos = { x: currentX * w, y: currentY * h };
+        const trailStartPos = { x: trailStartX * w, y: trailStartY * h };
+
+        // Calculer l'opacité (fade out à la fin)
+        const opacity = shootingStarProgress < 0.8 ? 1.0 : (1.0 - shootingStarProgress) / 0.2;
+
+        // Dessiner la traînée avec gradient
+        const gradient = ctx.createLinearGradient(trailStartPos.x, trailStartPos.y, currentPos.x, currentPos.y);
+        gradient.addColorStop(0, `rgba(255, 221, 142, 0)`);
+        gradient.addColorStop(0.7, `rgba(255, 221, 142, ${0.5 * opacity})`);
+        gradient.addColorStop(1, `rgba(255, 221, 142, ${opacity})`);
+
+        ctx.save();
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(trailStartPos.x, trailStartPos.y);
+        ctx.lineTo(currentPos.x, currentPos.y);
+        ctx.stroke();
+
+        // Dessiner la tête
+        ctx.fillStyle = `rgba(255, 221, 142, ${opacity})`;
+        ctx.beginPath();
+        ctx.arc(currentPos.x, currentPos.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Halo
+        ctx.fillStyle = `rgba(255, 221, 142, ${opacity * 0.3})`;
+        ctx.beginPath();
+        ctx.arc(currentPos.x, currentPos.y, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    // Dessiner le fond avec gradient diagonal
+    function drawBackground() {
+        let gradient;
+        if (isHomePage) {
+            gradient = ctx.createLinearGradient(0, 0, w, h);
+        } else {
+            gradient = ctx.createLinearGradient(w / 2, 0, w / 2, h);
         }
 
-        if (Date.now() > nextShooting) {
-            addShootingStar();
-            nextShooting = Date.now() + 4000 + Math.random() * 4000;
+        for (let i = 0; i < gradientColors.length; i++) {
+            gradient.addColorStop(gradientStops[i], gradientColors[i]);
         }
 
-        requestAnimationFrame(drawStars);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, w, h);
+    }
+
+    // Animation principale
+    let lastTime = 0;
+    const animationDuration = 3000; // 3 secondes pour un cycle complet
+    const shootingStarDuration = 1500; // 1.5 secondes pour l'étoile filante
+
+    function draw(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const delta = timestamp - lastTime;
+
+        // Mettre à jour l'animation de scintillement
+        animationValue = (animationValue + delta / animationDuration) % 1;
+
+        // Mettre à jour l'étoile filante
+        if (shootingStarActive) {
+            shootingStarProgress += delta / shootingStarDuration;
+            if (shootingStarProgress >= 1) {
+                shootingStarActive = false;
+                shootingStar = null;
+            }
+        }
+
+        lastTime = timestamp;
+
+        // Dessiner le fond
+        drawBackground();
+
+        // Dessiner les étoiles
+        for (const star of stars) {
+            const animatedOpacity = star.opacity * (0.3 + 0.7 * (1 + Math.sin(animationValue * 2 * Math.PI + star.animationOffset)) / 2);
+            drawCrossStar(star.x * w, star.y * h, star.size, animatedOpacity);
+        }
+
+        // Dessiner l'étoile filante
+        drawShootingStar();
+
+        requestAnimationFrame(draw);
+    }
+
+    // Programmer les étoiles filantes (seulement sur la page d'accueil)
+    function scheduleShootingStar() {
+        if (!isHomePage) return;
+        const delay = 5000 + Math.random() * 5000; // 5-10 secondes
+        setTimeout(() => {
+            createShootingStar();
+            scheduleShootingStar();
+        }, delay);
     }
 
     window.addEventListener('resize', function () {
         resize();
-        createStars();
+        generateStars();
     });
 
     resize();
-    createStars();
-    drawStars();
+    generateStars();
+    scheduleShootingStar();
+    requestAnimationFrame(draw);
 })();
-
-// Met à jour l'onglet actif en fonction de la page
-(function () {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('nav.nav-desktop a').forEach(link => {
-        // Pour que "index.html" ET "/" soient actifs sur la home
-        const href = link.getAttribute('href');
-        if (
-            (path === '' && href === 'index.html') ||
-            (path === href)
-        ) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-})();
-
