@@ -11,7 +11,16 @@
   --btn-txt: #101836;
 }
 
-html, body {
+@font-face {
+  font-family: 'Griffy';
+  src: url('fonts/griffy/Griffy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -29,7 +38,9 @@ body {
 /* HEADER */
 header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: var(--menu-bg);
   display: flex;
@@ -47,6 +58,7 @@ header {
 .logo {
   flex: 0 0 auto;
   font-weight: 700;
+  font-family: "Griffy", cursive;
   font-size: 2.7em;
   letter-spacing: 2px;
   color: #fff;
@@ -62,8 +74,11 @@ nav.nav-desktop {
   flex: 1 1 0;
   display: flex;
   justify-content: center;
+  font-family: "Griffy", cursive;
+  font-size: 25px;
   gap: 38px;
 }
+
 nav.nav-desktop a {
   color: var(--text-main);
   text-decoration: none;
@@ -71,6 +86,7 @@ nav.nav-desktop a {
   transition: color 0.2s;
   padding: 4px 10px;
 }
+
 nav.nav-desktop a:hover,
 nav.nav-desktop a.active {
   color: var(--accent);
@@ -106,6 +122,7 @@ nav.nav-desktop a.active {
   white-space: nowrap;
   margin-right: 0;
 }
+
 .lang-switch:hover {
   background: #fff7d4;
 }
@@ -127,6 +144,7 @@ nav.nav-desktop a.active {
   transition: background 0.2s;
   margin-left: 0;
 }
+
 .burger span {
   display: block;
   width: 22px;
@@ -148,27 +166,35 @@ nav.nav-mobile {
     justify-content: flex-start;
     gap: 0;
   }
+
   .logo {
     font-size: 2.1em;
     margin: 0 0 0 14px;
+    font-family: "Griffy", cursive;
+
   }
+
   .header-actions {
     margin-left: auto;
     gap: 10px;
     padding-right: 10px;
   }
+
   .lang-switch {
     font-size: 0.98em;
     padding: 5px 15px;
   }
+
   nav.nav-desktop {
     display: none !important;
   }
+
   .burger {
     display: flex;
     z-index: 1200;
     margin-right: 0;
   }
+
   nav.nav-mobile {
     position: fixed;
     top: 56px;
@@ -185,6 +211,7 @@ nav.nav-mobile {
     opacity: 1;
     visibility: visible;
   }
+
   nav.nav-mobile a {
     color: var(--text-main);
     text-decoration: none;
@@ -194,11 +221,13 @@ nav.nav-mobile {
     margin-bottom: 2px;
     transition: background 0.2s;
   }
+
   nav.nav-mobile a:hover,
   nav.nav-mobile a.active {
     background: var(--accent);
     color: var(--btn-txt);
   }
+
   nav.nav-mobile.hide {
     display: none !important;
   }
@@ -206,7 +235,9 @@ nav.nav-mobile {
 
 /* Hide burger et mobile nav sur desktop */
 @media (min-width: 701px) {
-  nav.nav-mobile, .burger {
+
+  nav.nav-mobile,
+  .burger {
     display: none !important;
   }
 }
@@ -218,6 +249,7 @@ main {
   margin: 0 auto;
   flex: 1 0 auto;
 }
+
 section {
   background: var(--card-bg);
   border-radius: 18px;
@@ -226,16 +258,20 @@ section {
   margin-bottom: 20px;
   z-index: 2;
 }
-h1, h2 {
+
+h1,
+h2 {
   color: var(--title);
   margin-top: 0;
   font-weight: 700;
   text-shadow: 0 2px 8px #0003;
 }
+
 h1 {
   font-size: 2.3em;
   margin-bottom: 8px;
 }
+
 h2 {
   font-size: 1.6em;
   margin-bottom: 15px;
@@ -251,6 +287,7 @@ h2 {
   text-shadow: 0 6px 36px #0009;
   text-align: center;
 }
+
 .home-desc {
   font-size: 1.18em;
   color: var(--text-main);
@@ -260,6 +297,7 @@ h2 {
   text-shadow: 0 2px 12px #0006;
   text-align: center;
 }
+
 .home-app-badges {
   margin-top: 24px;
   display: flex;
@@ -267,6 +305,7 @@ h2 {
   gap: 20px;
   flex-wrap: wrap;
 }
+
 .app-badge {
   height: 42px;
   opacity: 0.95;
@@ -300,6 +339,7 @@ footer {
   min-height: 70px;
   padding: 0;
 }
+
 .footer-link {
   color: #bfc5df;
   text-decoration: underline;
@@ -310,6 +350,7 @@ footer {
   padding: 20px 0;
   display: inline-block;
 }
+
 .footer-link:hover {
   color: var(--accent);
 }
@@ -325,7 +366,9 @@ footer {
 }
 
 /* ensure content above background */
-header, main, footer {
+header,
+main,
+footer {
   position: relative;
   z-index: 2;
 }
@@ -338,45 +381,56 @@ header, main, footer {
     height: 56px;
     padding: 0 0 0 0;
   }
+
   .logo {
     font-size: 1.7em;
     margin: 0 0 0 10px;
+    font-family: "Griffy", cursive;
   }
+
   .header-actions {
     padding-right: 6px;
     gap: 6px;
   }
+
   .lang-switch {
     font-size: 0.96em;
     padding: 4px 10px;
   }
+
   main {
     padding: 78px 4vw 10vw 4vw;
   }
+
   section {
     padding: 13px 6vw;
     border-radius: 13px;
     font-size: 0.97em;
   }
+
   h1 {
     font-size: 1.55em;
     margin-bottom: 10px;
   }
+
   h2 {
     font-size: 1.18em;
     margin-bottom: 12px;
   }
+
   .home-title {
     font-size: 1.75em;
     margin-bottom: 10px;
     margin-top: 14px;
   }
+
   .home-desc {
     font-size: 1em;
     margin-bottom: 20px;
     margin-top: 4px;
   }
 }
+
 #pdf-container {
   width: 100%;
   max-width: 850px;
@@ -386,13 +440,15 @@ header, main, footer {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
 }
+
 #pdf-container canvas {
-  width: 100% !important;  /* rend responsive */
+  width: 100% !important;
+  /* rend responsive */
   height: auto !important;
   display: block;
   margin-bottom: 2rem;
   background-color: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
 }
 
