@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+<script>
+    function copyEmail() {
+        const email = 'my.mystia.contact@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+            const feedback = document.getElementById('copyFeedback');
+            feedback.classList.add('show');
+            setTimeout(() => {
+                feedback.classList.remove('show');
+            }, 2000);
+        });
+    }
+</script>
 
 <body>
     <canvas id="bg-stars"></canvas>
@@ -33,11 +45,19 @@
 
     <main>
         <section>
-            <h1 data-i18n="contact_title">Nous contacter</h1>
-            <div>
-                <span data-i18n="contact_email_label">Adresse e-mail :</span>
-                <span class="contact-address">my.mystia.contact@gmail.com</span>
-            </div>
+            <div class="home-subtitle-desc" data-i18n="contact_title">Besoin de nous contacter ?</div>
+            <p class="contact-info" data-i18n="contact_subtitle">Tu peux nous joindre à l'adresse email suivante :</p>
+            <span class="contact-address">
+                my.mystia.contact@gmail.com
+                <button class="copy-btn" onclick="copyEmail()" title="Copier l'adresse">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </span>
+            <span class="copy-feedback" id="copyFeedback" data-i18n="copy_email">Copié !</span>
         </section>
     </main>
     <nav class="nav-mobile hide" id="navMobile">
