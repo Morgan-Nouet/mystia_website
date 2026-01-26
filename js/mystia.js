@@ -324,3 +324,45 @@ setLang(currentLang);
         }
     });
 })();
+
+//MENU BURGER JS 
+const burgerBtn = document.getElementById('burgerBtn');
+const navMobile = document.getElementById('navMobile');
+if (burgerBtn && navMobile) {
+    let menuOpen = false;
+    
+    function openMenu() {
+        navMobile.classList.remove('hide');
+        menuOpen = true;
+    }
+    
+    function closeMenu() {
+        navMobile.classList.add('hide');
+        menuOpen = false;
+    }
+    
+    burgerBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (menuOpen) closeMenu();
+        else openMenu();
+    });
+
+    navMobile.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function () {
+            closeMenu();
+        });
+    });
+
+    document.addEventListener('click', function (e) {
+        if (menuOpen && !navMobile.contains(e.target) && e.target !== burgerBtn) {
+            closeMenu();
+        }
+    });
+    
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 700) closeMenu();
+    });
+    
+    // Par défaut, menu caché
+    navMobile.classList.add('hide');
+}

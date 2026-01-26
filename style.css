@@ -3,6 +3,7 @@
   --accent: #ffe180;
   --title: #fff;
   --card-bg: #0000005d;
+  --card-bg-mobile: #000000d7;
   --text-main: #fff;
   --text-accent: #ffe180;
   --footer-bg: #0e1427f2;
@@ -199,7 +200,7 @@ nav.nav-mobile {
     position: fixed;
     top: 56px;
     right: 8px;
-    background: var(--card-bg);
+    background: var(--card-bg-mobile);
     box-shadow: 0 4px 32px #0007;
     border-radius: 16px;
     display: flex;
