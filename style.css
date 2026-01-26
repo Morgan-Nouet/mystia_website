@@ -10,6 +10,7 @@
   --menu-bg: #0e1427f2;
   --btn-bg: #ffffff9d;
   --btn-txt: #101836;
+  --desc-mystia: #ffffffb4;
 }
 
 @font-face {
@@ -280,7 +281,20 @@ h2 {
 
 .home-title {
   color: #fff;
-  font-size: 2.4em;
+  font-size: 6em;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  margin-top: 24px;
+  text-shadow: 0 6px 36px #0009;
+  text-align: center;
+  font-family: "Griffy";
+}
+
+.home-subtitle {
+  color: #fff;
+  font-family: "Griffy", cursive;
+  font-size: 1.6em;
   font-weight: 800;
   letter-spacing: 2px;
   margin-bottom: 10px;
@@ -289,14 +303,54 @@ h2 {
   text-align: center;
 }
 
+.home-subtitle-desc {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  margin-top: 24px;
+  text-shadow: 0 6px 36px #0009;
+  text-align: left;
+}
+
+.home-features-title {
+  color: #fff;
+  font-family: "Griffy", cursive;
+  font-size: 2.2em;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  margin-top: 24px;
+  text-shadow: 0 6px 36px #0009;
+  text-align: center;
+}
+
+/* Image home responsive */
+.home-logo {
+  display: block;
+  max-width: 100%;
+  width: 160px;
+  height: auto;
+  margin: 0 auto 20px auto;
+  border-radius: 16px;
+}
+
+@media (max-width: 600px) {
+  .home-logo {
+    width: 60%;
+    max-width: 150px;
+  }
+}
+
 .home-desc {
+  color: var(--desc-mystia);
   font-size: 1.18em;
-  color: var(--text-main);
   margin-bottom: 25px;
   margin-top: 6px;
   font-weight: 500;
   text-shadow: 0 2px 12px #0006;
-  text-align: center;
+  text-align: left;
 }
 
 .home-app-badges {
@@ -455,4 +509,25 @@ footer {
 
 .legal-details {
   white-space: pre-line;
+}
+
+.home-app-badges {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.app-badge {
+  height: 70px;
+  opacity: 0.95;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0006;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.app-badge:hover {
+  opacity: 1;
+  transform: scale(1.05);
 }

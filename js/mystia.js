@@ -289,10 +289,20 @@ function setLang(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
     updateLangBtn(lang);
+
+    // Traductions texte
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations && translations[lang] && translations[lang][key]) {
             el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Traductions images (src)
+    document.querySelectorAll('[data-i18n-src]').forEach(el => {
+        const key = el.getAttribute('data-i18n-src');
+        if (translations && translations[lang] && translations[lang][key]) {
+            el.src = translations[lang][key];
         }
     });
 }
@@ -330,17 +340,17 @@ const burgerBtn = document.getElementById('burgerBtn');
 const navMobile = document.getElementById('navMobile');
 if (burgerBtn && navMobile) {
     let menuOpen = false;
-    
+
     function openMenu() {
         navMobile.classList.remove('hide');
         menuOpen = true;
     }
-    
+
     function closeMenu() {
         navMobile.classList.add('hide');
         menuOpen = false;
     }
-    
+
     burgerBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         if (menuOpen) closeMenu();
@@ -358,11 +368,11 @@ if (burgerBtn && navMobile) {
             closeMenu();
         }
     });
-    
+
     window.addEventListener('resize', function () {
         if (window.innerWidth > 700) closeMenu();
     });
-    
+
     // Par défaut, menu caché
     navMobile.classList.add('hide');
 }
