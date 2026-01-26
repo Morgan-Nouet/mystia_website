@@ -39,10 +39,10 @@
 
     const container = document.getElementById('pdf-container');
 
-    function getLang() {
-      // Tu peux aussi stocker la langue dans localStorage selon ton système
-      return localStorage.getItem('lang') || 'fr';
-    }
+   function getLang() {
+    // Utiliser la même clé que mystia.js
+    return localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
+  }
 
     function loadPDF(lang) {
       container.innerHTML = ''; // Vide les anciens canvas si on change de langue
