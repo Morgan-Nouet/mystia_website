@@ -47,10 +47,11 @@ function updateLangBtn(lang) {
     if (flagIcon) {
         if (lang === 'fr') {
             // Quand on est en français, on propose de passer à l’anglais
-            flagIcon.innerHTML = 'EN <img src="img/gb.svg" alt="UK flag" style="height:1.2em;vertical-align:middle;">';
+            flagIcon.innerHTML = 'FR <img src="img/fr.svg" alt="Drapeau français" style="height:1.2em;vertical-align:middle;">';
         } else {
             // Quand on est en anglais, on propose de passer au français
-            flagIcon.innerHTML = 'FR <img src="img/fr.svg" alt="Drapeau français" style="height:1.2em;vertical-align:middle;">';
+
+            flagIcon.innerHTML = 'EN <img src="img/gb.svg" alt="UK flag" style="height:1.2em;vertical-align:middle;">';
         }
     }
 }
