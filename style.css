@@ -593,3 +593,41 @@ footer {
 .copy-feedback.show {
   opacity: 1;
 }
+
+/* --------- DELETE ACCOUNT PAGE --------- */
+.delete-account-intro {
+  color: var(--desc-mystia);
+  font-size: 1.1em;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.delete-account-steps {
+  color: var(--text-main);
+  font-size: 1.05em;
+  padding-left: 22px;
+  margin-bottom: 24px;
+}
+
+.delete-account-steps li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.delete-account-warning {
+  background: #ff4d4d22;
+  border-left: 4px solid #ff4d4d;
+  color: #ff9a9a;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 1em;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+
+.delete-account-contact {
+  color: var(--desc-mystia);
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
