@@ -270,20 +270,52 @@
 //LANG SWITCH JS + TRADUCTIONS 
 const translations = window.translations;
 
+// Langues disponibles + ordre d'affichage dans le menu déroulant
+const LANG_ORDER = ['fr', 'en', 'ro'];
+const LANGS = {
+    fr: { label: 'FR', flag: 'img/fr.svg', alt: 'Drapeau français' },
+    en: { label: 'EN', flag: 'img/gb.svg', alt: 'UK flag' },
+    ro: { label: 'RO', flag: 'img/ro.svg', alt: 'Drapeau roumain' },
+};
+
 function updateLangBtn(lang) {
     const flagIcon = document.getElementById('flagIcon');
     if (flagIcon) {
-        if (lang === 'fr') {
-            // En français → afficher drapeau français
-            flagIcon.innerHTML = 'FR <img src="img/fr.svg" alt="Drapeau français" style="height:1.2em;vertical-align:middle;">';
-        } else {
-            // En anglais → afficher drapeau anglais
-            flagIcon.innerHTML = 'EN <img src="img/gb.svg" alt="UK flag" style="height:1.2em;vertical-align:middle;">';
-        }
+        const info = LANGS[lang] || LANGS.fr;
+        flagIcon.innerHTML = `${info.label} <img src="${info.flag}" alt="${info.alt}" style="height:1.2em;vertical-align:middle;"> <span class="lang-caret" aria-hidden="true">▾</span>`;
+    }
+    // Met en évidence la langue active dans le menu déroulant (si présent)
+    const menu = document.getElementById('langMenu');
+    if (menu) {
+        menu.querySelectorAll('[data-lang]').forEach(opt => {
+            opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+        });
     }
 }
 
-let currentLang = localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
+// Détermine la langue de départ, par ordre de priorité :
+// 1) Paramètre d'URL ?lang=xx (ex. lien ouvert depuis l'app Mystia)
+// 2) Choix précédemment mémorisé par l'utilisateur
+// 3) Langue du navigateur
+// 4) Français par défaut
+function detectInitialLang() {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang && LANG_ORDER.includes(urlLang)) {
+        localStorage.setItem('mystiaLang', urlLang); // mémorise pour la navigation suivante
+        return urlLang;
+    }
+    const stored = localStorage.getItem('mystiaLang');
+    if (stored && LANG_ORDER.includes(stored)) {
+        return stored;
+    }
+    const navLang = (navigator.language || 'fr').slice(0, 2).toLowerCase();
+    if (LANG_ORDER.includes(navLang)) {
+        return navLang;
+    }
+    return 'fr';
+}
+
+let currentLang = detectInitialLang();
 
 function setLang(lang) {
     currentLang = lang;
@@ -309,10 +341,69 @@ function setLang(lang) {
 
 const langBtn = document.getElementById('langBtn');
 if (langBtn) {
-    langBtn.addEventListener('click', function () {
-        const newLang = currentLang === 'fr' ? 'en' : 'fr';
-        localStorage.setItem('mystiaLang', newLang);
-        setLang(newLang);
+    // Enveloppe le bouton dans un conteneur positionné pour ancrer le menu
+    const dropdown = document.createElement('div');
+    dropdown.className = 'lang-dropdown';
+    langBtn.parentNode.insertBefore(dropdown, langBtn);
+    dropdown.appendChild(langBtn);
+
+    langBtn.setAttribute('aria-haspopup', 'true');
+    langBtn.setAttribute('aria-expanded', 'false');
+
+    // Construit le menu déroulant des langues
+    const menu = document.createElement('div');
+    menu.className = 'lang-menu hide';
+    menu.id = 'langMenu';
+    menu.setAttribute('role', 'menu');
+
+    function openLangMenu() {
+        menu.classList.remove('hide');
+        langBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeLangMenu() {
+        menu.classList.add('hide');
+        langBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function chooseLang(code) {
+        closeLangMenu();
+        if (code === currentLang) return;
+        localStorage.setItem('mystiaLang', code);
+        // Sur les pages avec un PDF dépendant de la langue (CGU, confidentialité),
+        // on recharge pour re-générer le document dans la nouvelle langue.
+        if (document.getElementById('pdf-container')) {
+            location.reload();
+        } else {
+            setLang(code);
+        }
+    }
+
+    LANG_ORDER.forEach(code => {
+        const info = LANGS[code];
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'lang-option';
+        item.setAttribute('data-lang', code);
+        item.setAttribute('role', 'menuitem');
+        item.innerHTML = `<img src="${info.flag}" alt="${info.alt}"><span>${info.label}</span>`;
+        item.addEventListener('click', function (e) {
+            e.stopPropagation();
+            chooseLang(code);
+        });
+        menu.appendChild(item);
+    });
+    dropdown.appendChild(menu);
+
+    // Ouvre / ferme le menu au clic sur le bouton
+    langBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (menu.classList.contains('hide')) openLangMenu();
+        else closeLangMenu();
+    });
+
+    // Ferme le menu si on clique en dehors
+    document.addEventListener('click', function (e) {
+        if (!dropdown.contains(e.target)) closeLangMenu();
     });
 }
 

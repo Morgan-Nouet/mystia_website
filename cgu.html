@@ -79,14 +79,7 @@
 
     const currentLang = getLang();
     loadPDF(currentLang);
-
-    // Gère le clic sur le bouton de langue
-    const langBtn = document.getElementById('langBtn');
-    langBtn.addEventListener('click', () => {
-      const newLang = currentLang === 'fr' ? 'en' : 'fr';
-      localStorage.setItem('lang', newLang);
-      location.reload(); // recharge la page pour prendre en compte la langue partout
-    });
+    // Le changement de langue (et le rechargement de la page) est géré par mystia.js
   </script>
 
   <nav class="nav-mobile hide" id="navMobile">

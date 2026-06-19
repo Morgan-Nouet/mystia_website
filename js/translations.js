@@ -106,5 +106,60 @@ window.translations = {
         delete_account_contact: "If you encounter any issues or wish to request data deletion without using the app, you can contact us at:",
         mention_title: "Legal Mentions",
         mention_placeholder: "Publisher: Mr. Morgan NOUËT, acting under the trade name Garias Interactive, within the framework of a Business Project Support Contract (CAPE) concluded with the ODACIO business incubator.\n\nTrade name: Garias Interactive.\n\nLegal and Social Support (Legal Entity): ODACIO – COUVEUSE D’ENTREPRENEURS DE CHARENTE-MARITIME SAS with a capital of €62,000. Registered Office: 2 RUE BRAILLE, 17000 LA ROCHELLE, FRANCE. SIREN: 433 497 310 (RCS La Rochelle). Intra-community VAT number: FR41433497310.\n\nTel.: +33 (0)6 88 71 41 05 (Mon. to Fri. 9am-12pm)\n\nEmail: my.mystia.contact@gmail.com\n\nDirector of Publication: Mr. Morgan NOUËT\n\nHosting Provider: OVHcloud, 2 rue Kellermann, 59100 Roubaix, France.\n\n© 2026 Mystia. All rights reserved.",
+    },
+    ro: {
+        menu_home: "Acasă",
+        menu_cgu: "Termeni și Condiții",
+        menu_privacy: "Politica de Confidențialitate",
+        menu_contact: "Contact",
+        home_title: "Mystia",
+        home_subtitle: "Ghidul tău blând pentru o introspecție profundă",
+        home_store_subtitle: "Disponibil pe App Store și Google Play",
+        home_title_features_desc: "Ce este Mystia?",
+        badge_apple: "img/Apple/apple_en.svg",
+        badge_google: "img/Google/google_en.svg",
+        home_title_1: "Lecturi personalizate",
+        home_desc_1: `Datorită profilului tău personalizat, lecturile tale de tarot devin în sfârșit răspunsuri unice, adaptate propriei tale vieți.`,
+
+        home_title_2: "Arta Tarotului dintr-o nouă perspectivă<br>",
+        home_desc_2: `Mystia nu este o simplă aplicație de ghicit; este sanctuarul tău digital conceput să îți ofere răspunsuri clare și îndrumare zilnică. Lasă-te ghidat de Mystic, mascota ta spirituală: te însoțește la fiecare pas, descifrează energiile pentru tine și se asigură că fiecare lectură este un moment de blândețe și claritate.`,
+
+        home_title_3: "O personalizare care face diferența<br>",
+        home_desc_3: `Completând profilul tău de utilizator, îi permiți lui Mystic să îți înțeleagă mai bine energia și povestea. Datorită acestor informații, ea poate să îți ofere răspunsuri ultra-personalizate. Lecturile tale nu mai sunt simple definiții generice: devin sfaturi personalizate care rezonează cu situația ta reală, cu provocările și aspirațiile tale.`,
+
+        home_title_4: "De ce să alegi Mystia?<br>",
+        home_desc_4: `Tarotul este o oglindă a sufletului. Folosim înțelepciunea arcanelor pentru a te ajuta să navighezi prin etapele vieții tale, fie că este vorba de dragoste, carieră sau de trezirea ta personală. Preia din nou controlul asupra viitorului tău: Mystia este un instrument de reflecție care te ajută să iei cele mai bune decizii. Tu ții cărțile în mână, Mystic doar te ajută să le citești.`,
+
+        home_title_5: "Ce te așteaptă în aplicație:<br>",
+        home_desc_5: `1. <strong>Lecturi Intuitive:</strong> Trageri fluide care respectă energia hazardului pentru lecturi precise.<br>
+2. <strong>Interpretări Profunde:</strong> Mystic analizează cu grijă fiecare arcană, îmbinând simbolismul tradițional cu psihologia modernă.<br>
+3. <strong>Profil Unic:</strong> O îndrumare personalizată bazată pe informațiile tale pentru o precizie neegalată.<br>
+4. <strong>Jurnal Spiritual:</strong> Păstrează o evidență a lecturilor tale pentru a-ți observa evoluția și momentele de conștientizare.<br>
+5. <strong>Experiență Zen:</strong> O interfață liniștitoare pentru a-ți favoriza concentrarea și conexiunea interioară.`,
+        home_title_6: "Mystia Premium<br>",
+        home_desc_6: `Treci la nivelul următor cu abonamentul nostru anual. Accesează lecturi exclusive, analize și mai aprofundate și acces total la jurnalul tău spiritual.`,
+        legal_mentions: "Mențiuni legale: Mystia, aplicație de cartomanție asistată de IA.<br>Editor: Mystia Team, contact@mystia.eu. Găzduire: OVHcloud, 2 rue Kellermann, 59100 Roubaix, Franța.<br>© 2026 Mystia. Toate drepturile rezervate.",
+        cgu_title: "Termeni și Condiții de Utilizare",
+        cgu_placeholder: "(Text exemplu. Aici vor apărea Termenii și Condițiile oficiale ale Mystia. Mystia este o aplicație de cartomanție asistată de inteligență artificială, disponibilă pe Android și Apple Store.)",
+        privacy_title: "Politica de Confidențialitate",
+        privacy_placeholder: "Text exemplu. Politica de confidențialitate va explica modul în care datele tale sunt protejate pe Mystia.)",
+        contact_title: "Ai nevoie să ne contactezi?",
+        contact_subtitle: "Ne poți contacta la următoarea adresă de e-mail:",
+        contact_email_label: "Adresă de e-mail:",
+        copy_email: "Copiat!",
+        menu_delete_account: "Șterge contul meu",
+        delete_account_title: "Șterge contul meu",
+        delete_account_intro: "Vrei să îți ștergi contul Mystia și datele asociate? Iată cum să procedezi:",
+        delete_account_step_1: "Deschide aplicația Mystia pe telefonul tău.",
+        delete_account_step_2: "Mergi la <strong>Setări</strong> (pictograma cu cursoare).",
+        delete_account_step_3: "Apasă pe <strong>Șterge contul meu</strong>.",
+        delete_account_step_4: "Bifează căsuța <strong>\"Am citit și am înțeles consecințele ștergerii contului meu\"</strong>.",
+        delete_account_step_5: "Apasă pe butonul <strong>\"Șterge contul meu\"</strong>.",
+        delete_account_step_6: "Ți se va cere o reautentificare pentru a confirma ștergerea contului.",
+        delete_account_step_7: "Felicitări, datele și contul tău au fost șterse.",
+        delete_account_warning: "Ștergerea este definitivă. Toate datele tale personale, istoricul lecturilor și profilul tău vor fi eliminate de pe serverele noastre. Această acțiune este ireversibilă.",
+        delete_account_contact: "Dacă întâmpini o problemă sau dorești să soliciți ștergerea datelor tale fără a utiliza aplicația, ne poți contacta la:",
+        mention_title: "Mențiuni legale",
+        mention_placeholder: "Editor: Domnul Morgan NOUËT, acționând sub denumirea comercială Garias Interactive, în cadrul unui Contract de Sprijin pentru Proiectul de Întreprindere (CAPE) încheiat cu incubatorul de afaceri ODACIO.\n\nDenumire comercială: Garias Interactive.\n\nSuport juridic și social (Responsabil legal): ODACIO – COUVEUSE D’ENTREPRENEURS DE CHARENTE-MARITIME SAS cu un capital de 62.000 €. Sediu social: 2 RUE BRAILLE, 17000 LA ROCHELLE, Franța. SIREN: 433 497 310 (RCS La Rochelle). Număr de TVA intracomunitar: FR41433497310.\n\nTel.: +33 (0)6 88 71 41 05 (de luni până vineri, 9:00-12:00)\n\nE-mail: my.mystia.contact@gmail.com\n\nDirector de publicație: Dl. Morgan NOUËT\n\nGazdă: OVHcloud, 2 rue Kellermann, 59100 Roubaix, Franța.\n\n© 2026 Mystia. Toate drepturile rezervate.",
     }
 };

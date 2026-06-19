@@ -40,8 +40,8 @@
     const container = document.getElementById('pdf-container');
 
     function getLang() {
-      // Tu peux aussi stocker la langue dans localStorage selon ton système
-      return localStorage.getItem('lang') || 'fr';
+      // Utiliser la même clé que mystia.js
+      return localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
     }
 
     function loadPDF(lang) {
@@ -78,14 +78,7 @@
 
     const currentLang = getLang();
     loadPDF(currentLang);
-
-    // Gère le clic sur le bouton de langue
-    const langBtn = document.getElementById('langBtn');
-    langBtn.addEventListener('click', () => {
-      const newLang = currentLang === 'fr' ? 'en' : 'fr';
-      localStorage.setItem('lang', newLang);
-      location.reload(); // recharge la page pour prendre en compte la langue partout
-    });
+    // Le changement de langue (et le rechargement de la page) est géré par mystia.js
   </script>
   <nav class="nav-mobile hide" id="navMobile">
     <a href="index.html" data-i18n="menu_home">Accueil</a>

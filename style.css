@@ -145,6 +145,71 @@ nav.nav-desktop a.active {
   background: #fff7d4;
 }
 
+/* Petite flèche du bouton de langue */
+.lang-caret {
+  font-size: 0.8em;
+  margin-left: 1px;
+  pointer-events: none;
+}
+
+/* Liste déroulante des langues */
+.lang-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--menu-bg);
+  border: 1px solid #474b5f;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px #0008;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 110px;
+  z-index: 1600;
+}
+
+.lang-menu.hide {
+  display: none;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1em;
+  text-align: left;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-option img {
+  height: 1.2em;
+  vertical-align: middle;
+}
+
+.lang-option:hover {
+  background: #ffffff1a;
+}
+
+.lang-option.active {
+  background: var(--accent);
+  color: var(--btn-txt);
+}
+
 /* Burger button (mobile only) */
 .burger {
   display: none;
@@ -429,6 +494,13 @@ main,
 footer {
   position: relative;
   z-index: 2;
+}
+
+/* Le header (et donc le menu de langue qui déborde sous la barre) doit
+   passer au-dessus de main/sections, sinon les options ne sont pas
+   cliquables en mobile (les cartes interceptent les taps). */
+header {
+  z-index: 30;
 }
 
 /* --------- RESPONSIVE POUR MOBILE --------- */
