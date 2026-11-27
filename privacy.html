@@ -31,55 +31,609 @@
 
   </header>
 
-  <div id="pdf-container"></div>
+  <main class="legal-main">
+    <!-- Un bloc par langue : mystia.js affiche celui de la langue choisie (français par défaut) -->
+    <section class="legal-doc" data-legal-lang="fr" lang="fr">
+      <h1>Politique de confidentialité</h1>
+      <p class="legal-meta">Application mobile Mystia · Dernière mise à jour : 27 novembre 2026</p>
 
-  <script type="module">
-    import * as pdfjsLib from '/js/pdf.mjs';
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.mjs';
+      <nav class="legal-toc" aria-label="Sommaire">
+        <ol>
+          <li><a href="#fr-preambule">Préambule</a></li>
+          <li><a href="#fr-responsable">Responsable de traitement</a></li>
+          <li><a href="#fr-donnees">Données collectées</a></li>
+          <li><a href="#fr-finalites">Finalités et bases légales</a></li>
+          <li><a href="#fr-ia">Résumés générés par intelligence artificielle</a></li>
+          <li><a href="#fr-destinataires">Destinataires et sous-traitants</a></li>
+          <li><a href="#fr-transferts">Transferts hors de l'Union européenne</a></li>
+          <li><a href="#fr-conservation">Durées de conservation</a></li>
+          <li><a href="#fr-suppression">Suppression du compte</a></li>
+          <li><a href="#fr-droits">Vos droits et vos choix</a></li>
+          <li><a href="#fr-securite">Sécurité des données</a></li>
+          <li><a href="#fr-mineurs">Mineurs</a></li>
+          <li><a href="#fr-modification">Modification de la politique</a></li>
+          <li><a href="#fr-contact">Contact</a></li>
+        </ol>
+      </nav>
 
-    const container = document.getElementById('pdf-container');
+      <h2 id="fr-preambule">1. Préambule</h2>
+      <p>La présente politique a pour objet d'informer les utilisateurs de l'application mobile <strong>Mystia</strong>, application de tarot et de réflexion personnelle assistée par intelligence artificielle, de la manière dont leurs données personnelles sont collectées, utilisées, conservées et protégées.</p>
+      <p>L'application est éditée par <strong>Monsieur Morgan NOUËT</strong>, agissant sous le nom commercial <strong>Garias Interactive</strong>, dans le cadre d'un Contrat d'Appui au Projet d'Entreprise (CAPE) conclu avec la couveuse <strong>Odacio</strong>.</p>
+      <p>Les traitements respectent le Règlement (UE) 2016/679 (RGPD) et la loi Informatique et Libertés modifiée. Mystia applique ces principes à l'ensemble de ses utilisateurs, quel que soit leur pays de résidence, sans préjudice des droits prévus par d'autres réglementations locales (par exemple le CCPA en Californie ou la LGPD au Brésil).</p>
+      <p>En cas de contradiction entre une version traduite de cette politique et la version française, la version française fait foi.</p>
 
-    function getLang() {
-      // Utiliser la même clé que mystia.js
-      return localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
-    }
+      <h2 id="fr-responsable">2. Responsable de traitement</h2>
+      <p>Le responsable du traitement, au sens du RGPD, est la structure juridique qui porte l'activité de l'Éditeur :</p>
+      <p><strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, société par actions simplifiée (SAS), SIREN 433 497 310, siège social : 2 rue Braille, 17000 La Rochelle, France.</p>
+      <p>Pour toute question ou demande relative à vos données, contactez directement l'Éditeur, qui assure la gestion opérationnelle du service : <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
 
-    function loadPDF(lang) {
-      container.innerHTML = ''; // Vide les anciens canvas si on change de langue
-      const url = `/terms/privacy_${lang}.pdf`;
+      <h2 id="fr-donnees">3. Données collectées</h2>
+      <p>Nous ne collectons que les données utiles au fonctionnement de Mystia. Les informations de profil sont facultatives (sauf le prénom ou pseudonyme) et proposent l'option « Je préfère ne pas répondre ».</p>
 
-      const loadingTask = pdfjsLib.getDocument(url);
-      loadingTask.promise.then(pdf => {
-        const totalPages = pdf.numPages;
+      <h3>3.1 Compte</h3>
+      <ul>
+        <li>Adresse e-mail et nom fournis par Apple ou Google lors de la connexion. Avec « Se connecter avec Apple », vous pouvez masquer votre adresse : nous recevons alors une adresse relais fournie par Apple.</li>
+        <li>Identifiant technique de compte, attribué automatiquement.</li>
+      </ul>
 
-        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-          pdf.getPage(pageNum).then(page => {
-            const scale = window.innerWidth < 768 ? 0.9 : 1.5;
-            const viewport = page.getViewport({ scale });
+      <h3>3.2 Profil et préférences</h3>
+      <ul>
+        <li>Prénom ou pseudonyme, tranche d'âge, genre, situation amoureuse, activité professionnelle.</li>
+        <li>Niveau de connaissance du tarot, thèmes favoris, ton choisi pour Mystic, dos de cartes choisi, langue.</li>
+      </ul>
 
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            container.appendChild(canvas);
+      <h3>3.3 Contenus que vous saisissez ou générez</h3>
+      <ul>
+        <li>Situation que vous décrivez (thème, durée, ressenti, description libre) et questions posées.</li>
+        <li>Tirages réalisés (type de tirage, cartes obtenues) et résumés générés par l'intelligence artificielle.</li>
+        <li>Humeur et niveau de fatigue indiqués lors de la carte du jour, entrées de votre journal.</li>
+        <li>Avis facultatifs : appréciation d'un résumé, raison de ne pas souscrire à une offre, raison de la suppression du compte (cette dernière est enregistrée de façon anonyme).</li>
+      </ul>
 
-            const renderContext = {
-              canvasContext: context,
-              viewport: viewport
-            };
-            page.render(renderContext);
-          });
-        }
-      }).catch(error => {
-        container.innerHTML = `<p style="color: red;">Erreur lors du chargement du PDF.</p>`;
-        console.error(error);
-      });
-    }
+      <h3>3.4 Achats</h3>
+      <ul>
+        <li>Abonnements et achats effectués, dates, statut (actif, expiré, remboursé), pays et devise, solde de gemmes.</li>
+        <li>Les paiements sont traités exclusivement par Apple ou Google : <strong>nous n'avons jamais accès à vos données bancaires</strong>.</li>
+      </ul>
 
-    const currentLang = getLang();
-    loadPDF(currentLang);
-    // Le changement de langue (et le rechargement de la page) est géré par mystia.js
-  </script>
+      <h3>3.5 Notifications</h3>
+      <ul>
+        <li>Heure choisie pour le rappel de la carte du jour, fuseau horaire et jeton technique permettant d'envoyer les notifications sur votre appareil.</li>
+      </ul>
+
+      <h3>3.6 Données techniques et d'utilisation</h3>
+      <ul>
+        <li>Événements d'utilisation de l'application (écrans consultés, actions effectuées), version de l'application et du système, modèle d'appareil, langue.</li>
+        <li>Rapports de plantage et informations de diagnostic.</li>
+        <li>Adresse IP, identifiants techniques de l'appareil et identifiant attribué par notre outil de mesure des campagnes (AppsFlyer).</li>
+      </ul>
+
+      <h3>3.7 Identifiant publicitaire</h3>
+      <ul>
+        <li><strong>Sur iPhone</strong>, l'identifiant publicitaire (IDFA) n'est collecté que si vous l'acceptez dans la fenêtre « Autoriser le suivi » affichée par iOS. Si vous refusez, il n'est pas collecté.</li>
+        <li><strong>Sur Android</strong>, l'identifiant publicitaire peut être collecté. Vous pouvez le réinitialiser ou le supprimer à tout moment dans les paramètres de votre téléphone.</li>
+      </ul>
+
+      <p class="legal-callout"><strong>Données sensibles</strong> : Mystia ne cherche pas à collecter de données sensibles au sens de l'article 9 du RGPD (santé, opinions, convictions religieuses ou philosophiques, vie sexuelle…). Les textes que vous saisissez librement peuvent toutefois en révéler indirectement. Ils ne servent qu'à produire votre lecture et ne font l'objet d'aucun traitement ciblé. Nous vous invitons à ne pas y inscrire d'informations que vous ne souhaitez pas partager.</p>
+
+      <h2 id="fr-finalites">4. Finalités et bases légales</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Pourquoi nous utilisons vos données</th><th>Base légale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Créer et gérer votre compte, fournir les tirages, les résumés, le journal et l'historique</td><td>Exécution du contrat</td></tr>
+            <tr><td>Personnaliser les résumés à partir de votre profil et de la situation que vous décrivez</td><td>Exécution du contrat</td></tr>
+            <tr><td>Gérer vos achats, vos abonnements et vos gemmes</td><td>Exécution du contrat</td></tr>
+            <tr><td>Envoyer le rappel quotidien de la carte du jour et les rappels liés à votre abonnement</td><td>Consentement (autorisation des notifications)</td></tr>
+            <tr><td>Mesurer l'utilisation de l'application, corriger les erreurs, tester des variantes de l'application et améliorer la qualité des résumés</td><td>Intérêt légitime</td></tr>
+            <tr><td>Mesurer l'efficacité de nos campagnes publicitaires (savoir quelle publicité a mené à l'installation ou à un achat)</td><td>Intérêt légitime ; consentement pour l'identifiant publicitaire sur iPhone</td></tr>
+            <tr><td>Répondre à vos demandes d'assistance</td><td>Exécution du contrat et intérêt légitime</td></tr>
+            <tr><td>Respecter nos obligations légales et gérer d'éventuels litiges</td><td>Obligation légale et intérêt légitime</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Nous ne vendons pas vos données. Aucune prospection commerciale ni newsletter n'est envoyée sans votre consentement préalable. Aucune décision produisant des effets juridiques à votre égard n'est prise sur la seule base d'un traitement automatisé.</p>
+
+      <h2 id="fr-ia">5. Résumés générés par intelligence artificielle</h2>
+      <p>Les résumés de vos tirages sont générés par un modèle d'intelligence artificielle tiers : <strong>Gemini, fourni par Google</strong> (Google LLC), via l'API Gemini.</p>
+      <ul>
+        <li><strong>Ce qui est transmis</strong> : les cartes tirées et le type de tirage, votre question ou la situation décrite, votre humeur et votre niveau de fatigue (carte du jour), ainsi que les éléments de profil utiles à la lecture (prénom, tranche d'âge, genre, situation amoureuse, activité, niveau en tarot, ton choisi).</li>
+        <li><strong>Ce qui n'est pas transmis</strong> : votre adresse e-mail et vos informations de paiement.</li>
+        <li><strong>Utilisation par Google</strong> : dans le cadre de l'offre payante de l'API utilisée par Mystia, Google n'utilise pas ces requêtes pour entraîner ses modèles. Google peut les conserver temporairement afin de détecter les abus, conformément à ses conditions.</li>
+        <li>Ces requêtes peuvent être traitées en dehors de l'Union européenne (voir section 7).</li>
+      </ul>
+
+      <h2 id="fr-destinataires">6. Destinataires et sous-traitants</h2>
+      <p>Vos données sont accessibles uniquement à l'Éditeur et, si leur intervention est strictement nécessaire à la gestion administrative ou juridique du projet, aux membres habilités de la couveuse Odacio. Elles sont également traitées par les prestataires suivants, chacun pour le rôle indiqué :</p>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Prestataire</th><th>Rôle</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Google (Firebase)</td><td>Authentification, base de données, fonctions serveur, notifications (Cloud Messaging), mesure d'audience (Google Analytics), rapports de plantage (Crashlytics), configuration à distance et tests de variantes (Remote Config)</td></tr>
+            <tr><td>Google (API Gemini)</td><td>Génération des résumés par intelligence artificielle</td></tr>
+            <tr><td>RevenueCat, Inc.</td><td>Gestion des abonnements et des achats, vérification de la validité des transactions</td></tr>
+            <tr><td>AppsFlyer Ltd.</td><td>Attribution des installations et mesure de la performance des campagnes publicitaires</td></tr>
+            <tr><td>GitHub, Inc.</td><td>Hébergement du site mystia.eu (aucune donnée de l'application n'y est stockée)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Apple et Google</strong> interviennent aussi en tant que responsables de traitement indépendants pour la connexion à votre compte (« Se connecter avec Apple », « Se connecter avec Google ») et pour le paiement de vos achats, selon leurs propres politiques de confidentialité.</p>
+      <p><strong>Régies publicitaires</strong> : lorsque vous installez Mystia après avoir vu une de nos publicités, AppsFlyer peut transmettre à la régie concernée (par exemple Meta ou TikTok) des informations sur l'installation et sur certains événements (inscription, achat), afin de mesurer l'efficacité de la campagne. Sur iPhone, si vous avez refusé le suivi, ces informations ne sont pas reliées à votre identifiant publicitaire.</p>
+      <p>Nos sous-traitants sont liés par des engagements conformes à l'article 28 du RGPD et ne peuvent pas utiliser vos données pour leur propre compte en dehors de ce que prévoient leurs conditions.</p>
+
+      <h2 id="fr-transferts">7. Transferts hors de l'Union européenne</h2>
+      <p>Certains prestataires (Google, RevenueCat, AppsFlyer, les régies publicitaires) peuvent traiter des données en dehors de l'Union européenne, notamment aux États-Unis. Ces transferts sont encadrés par des garanties appropriées : certification au Data Privacy Framework UE–États-Unis lorsque le prestataire en dispose, clauses contractuelles types adoptées par la Commission européenne, ou décision d'adéquation (par exemple pour Israël).</p>
+
+      <h2 id="fr-conservation">8. Durées de conservation</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Données</th><th>Durée de conservation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Compte, profil, tirages, résumés, journal, humeur, préférences</td><td>Tant que votre compte existe. Un compte inactif depuis 3 ans peut être supprimé.</td></tr>
+            <tr><td>Avis sur les résumés et raisons de non-souscription</td><td>3 ans. Après la suppression du compte, ces avis sont conservés sans votre e-mail ni votre profil, rattachés uniquement à un identifiant technique.</td></tr>
+            <tr><td>Raison de la suppression du compte</td><td>3 ans, sous forme anonyme</td></tr>
+            <tr><td>Historique des achats</td><td>Le temps nécessaire à la gestion de vos abonnements et au respect de nos obligations légales</td></tr>
+            <tr><td>Statistiques d'utilisation (Google Analytics)</td><td>14 mois au plus</td></tr>
+            <tr><td>Rapports de plantage (Crashlytics)</td><td>90 jours</td></tr>
+            <tr><td>Données de mesure des campagnes (AppsFlyer)</td><td>Le temps nécessaire à la mesure des campagnes, selon les durées prévues par AppsFlyer</td></tr>
+            <tr><td>Échanges avec l'assistance</td><td>3 ans après la clôture de la demande</td></tr>
+            <tr><td>Statistiques agrégées et anonymisées</td><td>5 ans au plus</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="fr-suppression">9. Suppression du compte</h2>
+      <p>Vous pouvez supprimer votre compte à tout moment <strong>directement dans l'application</strong> : <em>Paramètres › Supprimer mon compte</em>. Vous pouvez aussi en faire la demande depuis la page <a href="delete-account.html">Supprimer mon compte</a> ou par e-mail.</p>
+      <p>La suppression efface définitivement votre compte, votre profil, vos tirages, vos résumés, votre journal et vos préférences, à l'exception des éléments décrits à la section 8. La date de la suppression peut être conservée pour prouver le respect de votre demande.</p>
+      <p class="legal-callout"><strong>Important</strong> : supprimer votre compte ou l'application <strong>n'annule pas un abonnement en cours</strong>. Pour arrêter les prélèvements, résiliez votre abonnement dans les réglages de votre compte Apple ou Google Play.</p>
+
+      <h2 id="fr-droits">10. Vos droits et vos choix</h2>
+      <p>Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants :</p>
+      <ul>
+        <li>droit d'accès à vos données et d'en obtenir une copie ;</li>
+        <li>droit de rectification des données inexactes (la plupart sont modifiables directement dans les paramètres de l'application) ;</li>
+        <li>droit à l'effacement ;</li>
+        <li>droit d'opposition, notamment aux traitements fondés sur l'intérêt légitime ;</li>
+        <li>droit à la limitation du traitement ;</li>
+        <li>droit à la portabilité de vos données ;</li>
+        <li>droit de retirer votre consentement à tout moment, sans effet sur la licéité des traitements réalisés avant ce retrait.</li>
+      </ul>
+      <p>Pour les exercer, écrivez à <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>. Nous répondons dans un délai d'un mois.</p>
+      <p><strong>Vos choix depuis votre téléphone :</strong></p>
+      <ul>
+        <li><strong>Notifications</strong> : désactivez-les dans les paramètres de Mystia ou dans les réglages de votre téléphone.</li>
+        <li><strong>Suivi publicitaire sur iPhone</strong> : Réglages › Confidentialité et sécurité › Suivi.</li>
+        <li><strong>Identifiant publicitaire sur Android</strong> : Paramètres › Google › Annonces (ou Paramètres › Confidentialité › Annonces selon votre appareil).</li>
+      </ul>
+      <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>), autorité de contrôle compétente, ou auprès de l'autorité de protection des données de votre pays de résidence.</p>
+
+      <h2 id="fr-securite">11. Sécurité des données</h2>
+      <p>Nous mettons en œuvre des mesures techniques et organisationnelles adaptées aux risques (article 32 du RGPD), notamment :</p>
+      <ul>
+        <li>une authentification sécurisée via Apple ou Google ;</li>
+        <li>le chiffrement des données en transit ;</li>
+        <li>l'hébergement sur des infrastructures sécurisées.</li>
+      </ul>
+
+      <h2 id="fr-mineurs">12. Mineurs</h2>
+      <p>Mystia est réservée aux personnes âgées de <strong>16 ans et plus</strong>. Nous ne collectons pas sciemment de données concernant des personnes de moins de 16 ans. Si vous pensez qu'un mineur nous a transmis des données, contactez-nous pour que nous les supprimions.</p>
+
+      <h2 id="fr-modification">13. Modification de la politique</h2>
+      <p>Cette politique peut évoluer, notamment en cas de changement réglementaire ou fonctionnel. La date de dernière mise à jour figure en haut de la page. En cas de modification substantielle, vous en serez informé dans l'application.</p>
+
+      <h2 id="fr-contact">14. Contact</h2>
+      <p>Pour toute question sur cette politique ou sur vos données : <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Version précédente : <a href="terms/privacy_fr.pdf">politique du 19 juin 2026 (PDF)</a></p>
+    </section>
+
+    <section class="legal-doc" data-legal-lang="en" lang="en" hidden>
+      <h1>Privacy Policy</h1>
+      <p class="legal-meta">Mystia mobile app · Last updated: November 27, 2026</p>
+
+      <nav class="legal-toc" aria-label="Contents">
+        <ol>
+          <li><a href="#en-preamble">Introduction</a></li>
+          <li><a href="#en-controller">Data controller</a></li>
+          <li><a href="#en-data">Data we collect</a></li>
+          <li><a href="#en-purposes">Purposes and legal bases</a></li>
+          <li><a href="#en-ai">AI-generated readings</a></li>
+          <li><a href="#en-recipients">Recipients and service providers</a></li>
+          <li><a href="#en-transfers">Transfers outside the European Union</a></li>
+          <li><a href="#en-retention">Retention periods</a></li>
+          <li><a href="#en-deletion">Account deletion</a></li>
+          <li><a href="#en-rights">Your rights and choices</a></li>
+          <li><a href="#en-security">Data security</a></li>
+          <li><a href="#en-minors">Minors</a></li>
+          <li><a href="#en-changes">Changes to this policy</a></li>
+          <li><a href="#en-contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="en-preamble">1. Introduction</h2>
+      <p>This policy explains to users of the <strong>Mystia</strong> mobile app, a tarot and personal reflection app powered by artificial intelligence, how their personal data is collected, used, stored and protected.</p>
+      <p>The app is published by <strong>Mr. Morgan NOUËT</strong>, operating under the trade name <strong>Garias Interactive</strong>, under a Business Project Support Contract (CAPE) with the business incubator <strong>Odacio</strong>.</p>
+      <p>Processing complies with Regulation (EU) 2016/679 (GDPR) and the amended French Data Protection Act. Mystia applies these principles to all users, wherever they live, without prejudice to the rights granted by other local laws (for example the CCPA in California or the LGPD in Brazil).</p>
+      <p>In the event of any inconsistency between a translated version of this policy and the French version, the French version prevails.</p>
+
+      <h2 id="en-controller">2. Data controller</h2>
+      <p>The data controller, within the meaning of the GDPR, is the legal entity that hosts the Publisher's activity:</p>
+      <p><strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, simplified joint-stock company (SAS), SIREN 433 497 310, registered office: 2 rue Braille, 17000 La Rochelle, France.</p>
+      <p>For any question or request about your data, please contact the Publisher directly, who runs the service day to day: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <h2 id="en-data">3. Data we collect</h2>
+      <p>We only collect the data Mystia needs to work. Profile information is optional (except your first name or nickname) and always offers a "Prefer not to say" option.</p>
+
+      <h3>3.1 Account</h3>
+      <ul>
+        <li>Email address and name provided by Apple or Google when you sign in. With "Sign in with Apple", you can hide your email address: we then receive a relay address provided by Apple.</li>
+        <li>A technical account identifier, assigned automatically.</li>
+      </ul>
+
+      <h3>3.2 Profile and preferences</h3>
+      <ul>
+        <li>First name or nickname, age range, gender, relationship status, occupation.</li>
+        <li>Tarot knowledge level, favorite topics, tone chosen for Mystic, chosen card back, language.</li>
+      </ul>
+
+      <h3>3.3 Content you enter or generate</h3>
+      <ul>
+        <li>The situation you describe (topic, duration, feelings, free description) and the questions you ask.</li>
+        <li>Readings performed (spread type, cards drawn) and the summaries generated by artificial intelligence.</li>
+        <li>Mood and tiredness level entered for the card of the day, and your journal entries.</li>
+        <li>Optional feedback: rating of a summary, reason for not subscribing to an offer, reason for deleting your account (the latter is stored anonymously).</li>
+      </ul>
+
+      <h3>3.4 Purchases</h3>
+      <ul>
+        <li>Subscriptions and purchases made, dates, status (active, expired, refunded), country and currency, gem balance.</li>
+        <li>Payments are handled exclusively by Apple or Google: <strong>we never have access to your payment details</strong>.</li>
+      </ul>
+
+      <h3>3.5 Notifications</h3>
+      <ul>
+        <li>The time you chose for the card of the day reminder, your time zone, and a technical token used to send notifications to your device.</li>
+      </ul>
+
+      <h3>3.6 Technical and usage data</h3>
+      <ul>
+        <li>App usage events (screens viewed, actions taken), app and operating system version, device model, language.</li>
+        <li>Crash reports and diagnostic information.</li>
+        <li>IP address, technical device identifiers, and the identifier assigned by our campaign measurement tool (AppsFlyer).</li>
+      </ul>
+
+      <h3>3.7 Advertising identifier</h3>
+      <ul>
+        <li><strong>On iPhone</strong>, the advertising identifier (IDFA) is only collected if you accept it in the "Allow tracking" prompt shown by iOS. If you decline, it is not collected.</li>
+        <li><strong>On Android</strong>, the advertising identifier may be collected. You can reset or delete it at any time in your phone settings.</li>
+      </ul>
+
+      <p class="legal-callout"><strong>Sensitive data</strong>: Mystia does not seek to collect sensitive data within the meaning of Article 9 of the GDPR (health, opinions, religious or philosophical beliefs, sex life, etc.). However, the text you freely enter may indirectly reveal such information. It is only used to produce your reading and is never subject to targeted processing. Please do not enter information you do not wish to share.</p>
+
+      <h2 id="en-purposes">4. Purposes and legal bases</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Why we use your data</th><th>Legal basis</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Create and manage your account, provide readings, summaries, the journal and history</td><td>Performance of the contract</td></tr>
+            <tr><td>Personalize summaries based on your profile and the situation you describe</td><td>Performance of the contract</td></tr>
+            <tr><td>Manage your purchases, subscriptions and gems</td><td>Performance of the contract</td></tr>
+            <tr><td>Send the daily card of the day reminder and subscription-related reminders</td><td>Consent (notification permission)</td></tr>
+            <tr><td>Measure app usage, fix bugs, test app variants and improve the quality of summaries</td><td>Legitimate interest</td></tr>
+            <tr><td>Measure the effectiveness of our advertising campaigns (which ad led to an install or a purchase)</td><td>Legitimate interest; consent for the advertising identifier on iPhone</td></tr>
+            <tr><td>Answer your support requests</td><td>Performance of the contract and legitimate interest</td></tr>
+            <tr><td>Comply with our legal obligations and handle any disputes</td><td>Legal obligation and legitimate interest</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>We do not sell your data. No marketing messages or newsletters are sent without your prior consent. No decision producing legal effects concerning you is made solely on the basis of automated processing.</p>
+
+      <h2 id="en-ai">5. AI-generated readings</h2>
+      <p>The summaries of your readings are generated by a third-party artificial intelligence model: <strong>Gemini, provided by Google</strong> (Google LLC), through the Gemini API.</p>
+      <ul>
+        <li><strong>What is sent</strong>: the cards drawn and the spread type, your question or the situation you described, your mood and tiredness level (card of the day), and the profile details useful for the reading (first name, age range, gender, relationship status, occupation, tarot level, chosen tone).</li>
+        <li><strong>What is not sent</strong>: your email address and your payment information.</li>
+        <li><strong>Use by Google</strong>: under the paid API offering used by Mystia, Google does not use these requests to train its models. Google may retain them temporarily to detect abuse, in accordance with its terms.</li>
+        <li>These requests may be processed outside the European Union (see section 7).</li>
+      </ul>
+
+      <h2 id="en-recipients">6. Recipients and service providers</h2>
+      <p>Your data is only accessible to the Publisher and, where strictly necessary for the administrative or legal management of the project, to authorized members of the Odacio incubator. It is also processed by the following providers, each for the stated purpose:</p>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Provider</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Google (Firebase)</td><td>Authentication, database, server functions, notifications (Cloud Messaging), audience measurement (Google Analytics), crash reports (Crashlytics), remote configuration and variant testing (Remote Config)</td></tr>
+            <tr><td>Google (Gemini API)</td><td>Generation of AI summaries</td></tr>
+            <tr><td>RevenueCat, Inc.</td><td>Subscription and purchase management, transaction validation</td></tr>
+            <tr><td>AppsFlyer Ltd.</td><td>Install attribution and advertising campaign performance measurement</td></tr>
+            <tr><td>GitHub, Inc.</td><td>Hosting of the mystia.eu website (no app data is stored there)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Apple and Google</strong> also act as independent controllers for signing in to your account ("Sign in with Apple", "Sign in with Google") and for processing your payments, under their own privacy policies.</p>
+      <p><strong>Advertising networks</strong>: when you install Mystia after seeing one of our ads, AppsFlyer may share with the relevant network (for example Meta or TikTok) information about the install and certain events (sign-up, purchase), to measure the campaign's effectiveness. On iPhone, if you declined tracking, this information is not linked to your advertising identifier.</p>
+      <p>Our service providers are bound by commitments that comply with Article 28 of the GDPR and may not use your data for their own purposes beyond what their terms allow.</p>
+
+      <h2 id="en-transfers">7. Transfers outside the European Union</h2>
+      <p>Some providers (Google, RevenueCat, AppsFlyer, advertising networks) may process data outside the European Union, including in the United States. These transfers are covered by appropriate safeguards: certification under the EU–US Data Privacy Framework where the provider holds it, standard contractual clauses adopted by the European Commission, or an adequacy decision (for example for Israel).</p>
+
+      <h2 id="en-retention">8. Retention periods</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Retention period</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Account, profile, readings, summaries, journal, mood, preferences</td><td>As long as your account exists. An account inactive for 3 years may be deleted.</td></tr>
+            <tr><td>Feedback on summaries and reasons for not subscribing</td><td>3 years. After account deletion, this feedback is kept without your email or profile, linked only to a technical identifier.</td></tr>
+            <tr><td>Reason for account deletion</td><td>3 years, anonymously</td></tr>
+            <tr><td>Purchase history</td><td>As long as needed to manage your subscriptions and meet our legal obligations</td></tr>
+            <tr><td>Usage statistics (Google Analytics)</td><td>14 months maximum</td></tr>
+            <tr><td>Crash reports (Crashlytics)</td><td>90 days</td></tr>
+            <tr><td>Campaign measurement data (AppsFlyer)</td><td>As long as needed to measure campaigns, according to AppsFlyer's retention periods</td></tr>
+            <tr><td>Support conversations</td><td>3 years after the request is closed</td></tr>
+            <tr><td>Aggregated and anonymized statistics</td><td>5 years maximum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="en-deletion">9. Account deletion</h2>
+      <p>You can delete your account at any time <strong>directly in the app</strong>: <em>Settings › Delete account</em>. You can also request it from the <a href="delete-account.html">Delete my account</a> page or by email.</p>
+      <p>Deletion permanently erases your account, profile, readings, summaries, journal and preferences, except for the items described in section 8. The date of deletion may be kept to prove that your request was carried out.</p>
+      <p class="legal-callout"><strong>Important</strong>: deleting your account or the app <strong>does not cancel an active subscription</strong>. To stop payments, cancel your subscription in your Apple or Google Play account settings.</p>
+
+      <h2 id="en-rights">10. Your rights and choices</h2>
+      <p>Under Articles 15 to 22 of the GDPR, you have the following rights:</p>
+      <ul>
+        <li>right of access to your data and to obtain a copy;</li>
+        <li>right to rectify inaccurate data (most of it can be edited directly in the app settings);</li>
+        <li>right to erasure;</li>
+        <li>right to object, in particular to processing based on legitimate interest;</li>
+        <li>right to restriction of processing;</li>
+        <li>right to data portability;</li>
+        <li>right to withdraw your consent at any time, without affecting the lawfulness of processing carried out before the withdrawal.</li>
+      </ul>
+      <p>To exercise them, write to <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>. We respond within one month.</p>
+      <p><strong>Your choices on your phone:</strong></p>
+      <ul>
+        <li><strong>Notifications</strong>: turn them off in Mystia's settings or in your phone settings.</li>
+        <li><strong>Tracking on iPhone</strong>: Settings › Privacy &amp; Security › Tracking.</li>
+        <li><strong>Advertising ID on Android</strong>: Settings › Google › Ads (or Settings › Privacy › Ads, depending on your device).</li>
+      </ul>
+      <p>If you believe your rights are not being respected, you can lodge a complaint with the CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>), the competent supervisory authority, or with the data protection authority of your country of residence.</p>
+
+      <h2 id="en-security">11. Data security</h2>
+      <p>We implement technical and organizational measures appropriate to the risks (Article 32 of the GDPR), including:</p>
+      <ul>
+        <li>secure sign-in through Apple or Google;</li>
+        <li>encryption of data in transit;</li>
+        <li>hosting on secure infrastructure.</li>
+      </ul>
+
+      <h2 id="en-minors">12. Minors</h2>
+      <p>Mystia is intended for people aged <strong>16 and over</strong>. We do not knowingly collect data from people under 16. If you believe a minor has shared data with us, contact us so that we can delete it.</p>
+
+      <h2 id="en-changes">13. Changes to this policy</h2>
+      <p>This policy may change, in particular following regulatory or product changes. The date of the last update appears at the top of this page. If a substantial change is made, you will be informed in the app.</p>
+
+      <h2 id="en-contact">14. Contact</h2>
+      <p>For any question about this policy or your data: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Previous version: <a href="terms/privacy_en.pdf">policy of June 19, 2026 (PDF)</a></p>
+    </section>
+
+    <section class="legal-doc" data-legal-lang="ro" lang="ro" hidden>
+      <h1>Politica de confidențialitate</h1>
+      <p class="legal-meta">Aplicația mobilă Mystia · Ultima actualizare: 27 noiembrie 2026</p>
+
+      <nav class="legal-toc" aria-label="Cuprins">
+        <ol>
+          <li><a href="#ro-preambul">Introducere</a></li>
+          <li><a href="#ro-operator">Operatorul de date</a></li>
+          <li><a href="#ro-date">Datele colectate</a></li>
+          <li><a href="#ro-scopuri">Scopuri și temeiuri legale</a></li>
+          <li><a href="#ro-ia">Lecturi generate de inteligența artificială</a></li>
+          <li><a href="#ro-destinatari">Destinatari și furnizori de servicii</a></li>
+          <li><a href="#ro-transferuri">Transferuri în afara Uniunii Europene</a></li>
+          <li><a href="#ro-pastrare">Perioade de păstrare</a></li>
+          <li><a href="#ro-stergere">Ștergerea contului</a></li>
+          <li><a href="#ro-drepturi">Drepturile și opțiunile tale</a></li>
+          <li><a href="#ro-securitate">Securitatea datelor</a></li>
+          <li><a href="#ro-minori">Minori</a></li>
+          <li><a href="#ro-modificari">Modificarea politicii</a></li>
+          <li><a href="#ro-contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="ro-preambul">1. Introducere</h2>
+      <p>Această politică informează utilizatorii aplicației mobile <strong>Mystia</strong>, aplicație de tarot și de reflecție personală asistată de inteligența artificială, despre modul în care datele lor personale sunt colectate, utilizate, păstrate și protejate.</p>
+      <p>Aplicația este publicată de <strong>domnul Morgan NOUËT</strong>, care activează sub denumirea comercială <strong>Garias Interactive</strong>, în cadrul unui Contract de Sprijin pentru Proiectul de Întreprindere (CAPE) încheiat cu incubatorul de afaceri <strong>Odacio</strong>.</p>
+      <p>Prelucrarea respectă Regulamentul (UE) 2016/679 (RGPD) și legea franceză „Informatique et Libertés”, cu modificările ulterioare. Mystia aplică aceste principii tuturor utilizatorilor, indiferent de țara de reședință, fără a aduce atingere drepturilor prevăzute de alte legi locale (de exemplu CCPA în California sau LGPD în Brazilia).</p>
+      <p>În caz de contradicție între o versiune tradusă a acestei politici și versiunea în limba franceză, prevalează versiunea în limba franceză.</p>
+
+      <h2 id="ro-operator">2. Operatorul de date</h2>
+      <p>Operatorul de date, în sensul RGPD, este entitatea juridică ce găzduiește activitatea Editorului:</p>
+      <p><strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, societate pe acțiuni simplificată (SAS), SIREN 433 497 310, sediul social: 2 rue Braille, 17000 La Rochelle, Franța.</p>
+      <p>Pentru orice întrebare sau cerere privind datele tale, contactează direct Editorul, care se ocupă de funcționarea zilnică a serviciului: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <h2 id="ro-date">3. Datele colectate</h2>
+      <p>Colectăm doar datele necesare funcționării Mystia. Informațiile de profil sunt opționale (cu excepția prenumelui sau a pseudonimului) și oferă mereu opțiunea „Prefer să nu răspund”.</p>
+
+      <h3>3.1 Cont</h3>
+      <ul>
+        <li>Adresa de e-mail și numele furnizate de Apple sau Google la conectare. Cu „Conectează-te cu Apple” îți poți ascunde adresa de e-mail: în acest caz primim o adresă de redirecționare furnizată de Apple.</li>
+        <li>Un identificator tehnic de cont, atribuit automat.</li>
+      </ul>
+
+      <h3>3.2 Profil și preferințe</h3>
+      <ul>
+        <li>Prenume sau pseudonim, categorie de vârstă, gen, situație sentimentală, ocupație.</li>
+        <li>Nivelul de cunoaștere a tarotului, temele preferate, tonul ales pentru Mystic, spatele de carte ales, limba.</li>
+      </ul>
+
+      <h3>3.3 Conținutul pe care îl introduci sau îl generezi</h3>
+      <ul>
+        <li>Situația pe care o descrii (temă, durată, ce simți, descriere liberă) și întrebările pe care le pui.</li>
+        <li>Lecturile efectuate (tipul de extragere, cărțile obținute) și rezumatele generate de inteligența artificială.</li>
+        <li>Starea de spirit și nivelul de oboseală indicate pentru cartea zilei, precum și însemnările din jurnalul tău.</li>
+        <li>Feedback opțional: aprecierea unui rezumat, motivul pentru care nu te abonezi la o ofertă, motivul ștergerii contului (acesta din urmă este înregistrat anonim).</li>
+      </ul>
+
+      <h3>3.4 Achiziții</h3>
+      <ul>
+        <li>Abonamentele și achizițiile efectuate, datele, starea (activ, expirat, rambursat), țara și moneda, soldul de geme.</li>
+        <li>Plățile sunt procesate exclusiv de Apple sau Google: <strong>nu avem niciodată acces la datele tale bancare</strong>.</li>
+      </ul>
+
+      <h3>3.5 Notificări</h3>
+      <ul>
+        <li>Ora aleasă pentru memento-ul cărții zilei, fusul orar și un token tehnic care permite trimiterea notificărilor pe dispozitivul tău.</li>
+      </ul>
+
+      <h3>3.6 Date tehnice și de utilizare</h3>
+      <ul>
+        <li>Evenimente de utilizare a aplicației (ecrane vizualizate, acțiuni efectuate), versiunea aplicației și a sistemului de operare, modelul dispozitivului, limba.</li>
+        <li>Rapoarte de erori și informații de diagnosticare.</li>
+        <li>Adresa IP, identificatori tehnici ai dispozitivului și identificatorul atribuit de instrumentul nostru de măsurare a campaniilor (AppsFlyer).</li>
+      </ul>
+
+      <h3>3.7 Identificatorul de publicitate</h3>
+      <ul>
+        <li><strong>Pe iPhone</strong>, identificatorul de publicitate (IDFA) este colectat doar dacă accepți în fereastra „Permite urmărirea” afișată de iOS. Dacă refuzi, acesta nu este colectat.</li>
+        <li><strong>Pe Android</strong>, identificatorul de publicitate poate fi colectat. Îl poți reseta sau șterge oricând din setările telefonului.</li>
+      </ul>
+
+      <p class="legal-callout"><strong>Date sensibile</strong>: Mystia nu urmărește să colecteze date sensibile în sensul articolului 9 din RGPD (sănătate, opinii, convingeri religioase sau filozofice, viață sexuală etc.). Totuși, textele pe care le introduci liber pot dezvălui indirect astfel de informații. Ele servesc doar la realizarea lecturii tale și nu fac obiectul niciunei prelucrări țintite. Te rugăm să nu introduci informații pe care nu dorești să le împărtășești.</p>
+
+      <h2 id="ro-scopuri">4. Scopuri și temeiuri legale</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>De ce folosim datele tale</th><th>Temei legal</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Crearea și gestionarea contului, furnizarea lecturilor, a rezumatelor, a jurnalului și a istoricului</td><td>Executarea contractului</td></tr>
+            <tr><td>Personalizarea rezumatelor pe baza profilului tău și a situației pe care o descrii</td><td>Executarea contractului</td></tr>
+            <tr><td>Gestionarea achizițiilor, abonamentelor și gemelor</td><td>Executarea contractului</td></tr>
+            <tr><td>Trimiterea memento-ului zilnic pentru cartea zilei și a memento-urilor legate de abonament</td><td>Consimțământ (permisiunea pentru notificări)</td></tr>
+            <tr><td>Măsurarea utilizării aplicației, corectarea erorilor, testarea unor variante ale aplicației și îmbunătățirea calității rezumatelor</td><td>Interes legitim</td></tr>
+            <tr><td>Măsurarea eficienței campaniilor noastre publicitare (ce reclamă a dus la o instalare sau la o achiziție)</td><td>Interes legitim; consimțământ pentru identificatorul de publicitate pe iPhone</td></tr>
+            <tr><td>Răspunsul la solicitările tale de asistență</td><td>Executarea contractului și interes legitim</td></tr>
+            <tr><td>Respectarea obligațiilor legale și gestionarea eventualelor litigii</td><td>Obligație legală și interes legitim</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Nu vindem datele tale. Nu trimitem mesaje comerciale sau newslettere fără consimțământul tău prealabil. Nicio decizie care produce efecte juridice asupra ta nu este luată exclusiv pe baza unei prelucrări automate.</p>
+
+      <h2 id="ro-ia">5. Lecturi generate de inteligența artificială</h2>
+      <p>Rezumatele lecturilor tale sunt generate de un model de inteligență artificială terț: <strong>Gemini, furnizat de Google</strong> (Google LLC), prin API-ul Gemini.</p>
+      <ul>
+        <li><strong>Ce se transmite</strong>: cărțile extrase și tipul de extragere, întrebarea ta sau situația descrisă, starea de spirit și nivelul de oboseală (cartea zilei), precum și elementele de profil utile lecturii (prenume, categorie de vârstă, gen, situație sentimentală, ocupație, nivel de tarot, tonul ales).</li>
+        <li><strong>Ce nu se transmite</strong>: adresa ta de e-mail și informațiile de plată.</li>
+        <li><strong>Utilizarea de către Google</strong>: în cadrul ofertei plătite a API-ului folosit de Mystia, Google nu folosește aceste cereri pentru a-și antrena modelele. Google le poate păstra temporar pentru a detecta abuzurile, conform condițiilor sale.</li>
+        <li>Aceste cereri pot fi prelucrate în afara Uniunii Europene (vezi secțiunea 7).</li>
+      </ul>
+
+      <h2 id="ro-destinatari">6. Destinatari și furnizori de servicii</h2>
+      <p>Datele tale sunt accesibile doar Editorului și, atunci când este strict necesar pentru gestionarea administrativă sau juridică a proiectului, membrilor autorizați ai incubatorului Odacio. Ele sunt prelucrate și de următorii furnizori, fiecare pentru rolul indicat:</p>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Furnizor</th><th>Rol</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Google (Firebase)</td><td>Autentificare, bază de date, funcții server, notificări (Cloud Messaging), măsurarea audienței (Google Analytics), rapoarte de erori (Crashlytics), configurare la distanță și testarea variantelor (Remote Config)</td></tr>
+            <tr><td>Google (API Gemini)</td><td>Generarea rezumatelor prin inteligență artificială</td></tr>
+            <tr><td>RevenueCat, Inc.</td><td>Gestionarea abonamentelor și a achizițiilor, verificarea validității tranzacțiilor</td></tr>
+            <tr><td>AppsFlyer Ltd.</td><td>Atribuirea instalărilor și măsurarea performanței campaniilor publicitare</td></tr>
+            <tr><td>GitHub, Inc.</td><td>Găzduirea site-ului mystia.eu (nu sunt stocate acolo date ale aplicației)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Apple și Google</strong> intervin, de asemenea, ca operatori independenți pentru conectarea la contul tău („Conectează-te cu Apple”, „Conectează-te cu Google”) și pentru plata achizițiilor, conform propriilor politici de confidențialitate.</p>
+      <p><strong>Rețele de publicitate</strong>: atunci când instalezi Mystia după ce ai văzut una dintre reclamele noastre, AppsFlyer poate transmite rețelei respective (de exemplu Meta sau TikTok) informații despre instalare și despre anumite evenimente (înregistrare, achiziție), pentru a măsura eficiența campaniei. Pe iPhone, dacă ai refuzat urmărirea, aceste informații nu sunt legate de identificatorul tău de publicitate.</p>
+      <p>Furnizorii noștri sunt obligați prin angajamente conforme cu articolul 28 din RGPD și nu pot folosi datele tale în interes propriu în afara a ceea ce prevăd condițiile lor.</p>
+
+      <h2 id="ro-transferuri">7. Transferuri în afara Uniunii Europene</h2>
+      <p>Unii furnizori (Google, RevenueCat, AppsFlyer, rețelele de publicitate) pot prelucra date în afara Uniunii Europene, în special în Statele Unite. Aceste transferuri sunt însoțite de garanții adecvate: certificarea în cadrul Data Privacy Framework UE–SUA atunci când furnizorul o deține, clauze contractuale standard adoptate de Comisia Europeană sau o decizie privind caracterul adecvat (de exemplu pentru Israel).</p>
+
+      <h2 id="ro-pastrare">8. Perioade de păstrare</h2>
+      <div class="legal-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Perioadă de păstrare</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cont, profil, lecturi, rezumate, jurnal, stare de spirit, preferințe</td><td>Cât timp există contul tău. Un cont inactiv de 3 ani poate fi șters.</td></tr>
+            <tr><td>Feedback despre rezumate și motivele neabonării</td><td>3 ani. După ștergerea contului, acest feedback este păstrat fără e-mailul și profilul tău, legat doar de un identificator tehnic.</td></tr>
+            <tr><td>Motivul ștergerii contului</td><td>3 ani, în formă anonimă</td></tr>
+            <tr><td>Istoricul achizițiilor</td><td>Cât timp este necesar pentru gestionarea abonamentelor și respectarea obligațiilor noastre legale</td></tr>
+            <tr><td>Statistici de utilizare (Google Analytics)</td><td>Maximum 14 luni</td></tr>
+            <tr><td>Rapoarte de erori (Crashlytics)</td><td>90 de zile</td></tr>
+            <tr><td>Date de măsurare a campaniilor (AppsFlyer)</td><td>Cât timp este necesar pentru măsurarea campaniilor, conform perioadelor prevăzute de AppsFlyer</td></tr>
+            <tr><td>Corespondența cu asistența</td><td>3 ani de la închiderea solicitării</td></tr>
+            <tr><td>Statistici agregate și anonimizate</td><td>Maximum 5 ani</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="ro-stergere">9. Ștergerea contului</h2>
+      <p>Îți poți șterge contul oricând <strong>direct din aplicație</strong>: <em>Setări › Șterge-mi contul</em>. Poți face cererea și de pe pagina <a href="delete-account.html">Șterge-mi contul</a> sau prin e-mail.</p>
+      <p>Ștergerea elimină definitiv contul, profilul, lecturile, rezumatele, jurnalul și preferințele tale, cu excepția elementelor descrise în secțiunea 8. Data ștergerii poate fi păstrată pentru a dovedi că cererea ta a fost respectată.</p>
+      <p class="legal-callout"><strong>Important</strong>: ștergerea contului sau a aplicației <strong>nu anulează un abonament activ</strong>. Pentru a opri plățile, anulează abonamentul din setările contului tău Apple sau Google Play.</p>
+
+      <h2 id="ro-drepturi">10. Drepturile și opțiunile tale</h2>
+      <p>Conform articolelor 15–22 din RGPD, ai următoarele drepturi:</p>
+      <ul>
+        <li>dreptul de acces la datele tale și de a obține o copie a acestora;</li>
+        <li>dreptul de rectificare a datelor inexacte (majoritatea pot fi modificate direct din setările aplicației);</li>
+        <li>dreptul la ștergere;</li>
+        <li>dreptul la opoziție, în special față de prelucrările bazate pe interesul legitim;</li>
+        <li>dreptul la restricționarea prelucrării;</li>
+        <li>dreptul la portabilitatea datelor;</li>
+        <li>dreptul de a-ți retrage consimțământul oricând, fără a afecta legalitatea prelucrărilor efectuate înainte de retragere.</li>
+      </ul>
+      <p>Pentru a le exercita, scrie la <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>. Răspundem în termen de o lună.</p>
+      <p><strong>Opțiunile tale din telefon:</strong></p>
+      <ul>
+        <li><strong>Notificări</strong>: dezactivează-le din setările Mystia sau din setările telefonului.</li>
+        <li><strong>Urmărirea pe iPhone</strong>: Configurări › Confidențialitate și securitate › Urmărire.</li>
+        <li><strong>Identificatorul de publicitate pe Android</strong>: Setări › Google › Anunțuri (sau Setări › Confidențialitate › Anunțuri, în funcție de dispozitiv).</li>
+      </ul>
+      <p>Dacă consideri că drepturile tale nu sunt respectate, poți depune o plângere la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>), autoritatea de supraveghere competentă, sau la autoritatea de protecție a datelor din țara ta de reședință (în România, ANSPDCP: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener">www.dataprotection.ro</a>).</p>
+
+      <h2 id="ro-securitate">11. Securitatea datelor</h2>
+      <p>Aplicăm măsuri tehnice și organizatorice adaptate riscurilor (articolul 32 din RGPD), în special:</p>
+      <ul>
+        <li>autentificare securizată prin Apple sau Google;</li>
+        <li>criptarea datelor în tranzit;</li>
+        <li>găzduirea pe infrastructuri securizate.</li>
+      </ul>
+
+      <h2 id="ro-minori">12. Minori</h2>
+      <p>Mystia este destinată persoanelor de <strong>16 ani și peste</strong>. Nu colectăm în mod intenționat date despre persoane sub 16 ani. Dacă crezi că un minor ne-a transmis date, contactează-ne pentru a le șterge.</p>
+
+      <h2 id="ro-modificari">13. Modificarea politicii</h2>
+      <p>Această politică poate evolua, în special în urma unor schimbări legislative sau funcționale. Data ultimei actualizări apare în partea de sus a paginii. În cazul unei modificări substanțiale, vei fi informat în aplicație.</p>
+
+      <h2 id="ro-contact">14. Contact</h2>
+      <p>Pentru orice întrebare despre această politică sau despre datele tale: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Versiunea anterioară: <a href="terms/privacy_ro.pdf">politica din 19 iunie 2026 (PDF)</a></p>
+    </section>
+  </main>
+
   <nav class="nav-mobile hide" id="navMobile">
     <a href="index.html" data-i18n="menu_home">Accueil</a>
     <a href="cgu.html" data-i18n="menu_cgu">CGU</a>

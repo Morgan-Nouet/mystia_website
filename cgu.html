@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Mystia – CGU</title>
+  <title>Mystia – Conditions générales d'utilisation et de vente</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -31,56 +31,416 @@
 
   </header>
 
-  <!-- <iframe src="terms/cgu_mystia_fr.pdf" width="100%" height="700px" style="border:1px solid #ccc;border-radius:12px;margin-top:20px;"></iframe> -->
-  <div id="pdf-container"></div>
+  <main class="legal-main">
+    <!-- Un bloc par langue : mystia.js affiche celui de la langue choisie (français par défaut) -->
+    <section class="legal-doc" data-legal-lang="fr" lang="fr">
+      <h1>Conditions générales d'utilisation et de vente</h1>
+      <p class="legal-meta">Application mobile Mystia · Dernière mise à jour : 27 novembre 2026</p>
 
-  <script type="module">
-    import * as pdfjsLib from '/js/pdf.mjs';
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.mjs';
+      <nav class="legal-toc" aria-label="Sommaire">
+        <ol>
+          <li><a href="#fr-objet">Objet</a></li>
+          <li><a href="#fr-acceptation">Acceptation des conditions</a></li>
+          <li><a href="#fr-acces">Accès et éligibilité</a></li>
+          <li><a href="#fr-service">Description du service</a></li>
+          <li><a href="#fr-offres">Offres gratuites et payantes</a></li>
+          <li><a href="#fr-paiement">Paiement, renouvellement et résiliation</a></li>
+          <li><a href="#fr-retractation">Droit de rétractation et remboursements</a></li>
+          <li><a href="#fr-obligations">Obligations de l'utilisateur</a></li>
+          <li><a href="#fr-pi">Propriété intellectuelle</a></li>
+          <li><a href="#fr-conseil">Absence de conseil professionnel</a></li>
+          <li><a href="#fr-responsabilite">Limitation de responsabilité</a></li>
+          <li><a href="#fr-suspension">Suspension et suppression du compte</a></li>
+          <li><a href="#fr-modifications">Modifications du service et des conditions</a></li>
+          <li><a href="#fr-donnees">Données personnelles</a></li>
+          <li><a href="#fr-tiers">Services tiers</a></li>
+          <li><a href="#fr-nullite">Nullité partielle</a></li>
+          <li><a href="#fr-droit">Droit applicable et litiges</a></li>
+          <li><a href="#fr-contact">Contact</a></li>
+        </ol>
+      </nav>
 
-    const container = document.getElementById('pdf-container');
+      <h2 id="fr-objet">1. Objet</h2>
+      <p>Les présentes Conditions générales d'utilisation et de vente (les « Conditions ») définissent les conditions dans lesquelles <strong>Monsieur Morgan NOUËT</strong>, agissant sous le nom commercial <strong>Garias Interactive</strong> (« l'Éditeur » ou « nous ») dans le cadre d'un Contrat d'Appui au Projet d'Entreprise (CAPE) conclu avec la couveuse <strong>Odacio</strong>, met à disposition l'application mobile <strong>Mystia</strong> (« l'Application »), application de tarot et de réflexion personnelle assistée par intelligence artificielle, ainsi que les services associés (« le Service »). Elles définissent aussi les droits et obligations des utilisateurs (« l'Utilisateur » ou « vous »).</p>
+      <p>Le support juridique, social et fiscal de l'activité est assuré par : <strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, société par actions simplifiée (SAS), siège social : 2 rue Braille, 17000 La Rochelle, RCS La Rochelle, SIREN 433 497 310, TVA intracommunautaire FR41433497310.</p>
 
-   function getLang() {
-    // Utiliser la même clé que mystia.js
-    return localStorage.getItem('mystiaLang') || (navigator.language.startsWith("en") ? "en" : "fr");
-  }
+      <h2 id="fr-acceptation">2. Acceptation des conditions</h2>
+      <p>En créant un compte ou en utilisant l'Application, vous reconnaissez avoir lu et accepté les présentes Conditions. Si vous ne les acceptez pas, vous ne devez pas utiliser l'Application.</p>
+      <p>Pour les utilisateurs d'iPhone, les présentes Conditions s'appliquent en complément du <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">contrat de licence d'utilisateur final standard d'Apple</a>.</p>
 
-    function loadPDF(lang) {
-      container.innerHTML = ''; // Vide les anciens canvas si on change de langue
-      const url = `/terms/cgu_mystia_${lang}.pdf`;
+      <h2 id="fr-acces">3. Accès et éligibilité</h2>
+      <p>L'Application est disponible sur l'App Store d'Apple et sur Google Play. Son utilisation nécessite la création d'un compte via « Se connecter avec Apple » ou « Se connecter avec Google ».</p>
+      <p>Vous devez être âgé d'au moins <strong>16 ans</strong> (ou de l'âge supérieur requis dans votre pays) et avoir la capacité juridique de conclure un contrat.</p>
 
-      const loadingTask = pdfjsLib.getDocument(url);
-      loadingTask.promise.then(pdf => {
-        const totalPages = pdf.numPages;
+      <h2 id="fr-service">4. Description du service</h2>
+      <p>L'Application permet notamment :</p>
+      <ul>
+        <li>de tirer chaque jour une carte du jour et d'indiquer votre humeur et votre niveau de fatigue ;</li>
+        <li>de réaliser des tirages de tarot, soit en mode guidé (l'Application propose le tirage adapté à la situation que vous décrivez), soit en mode manuel (vous choisissez le thème, le tirage et votre question) ;</li>
+        <li>de recevoir un résumé personnalisé de vos tirages, généré par intelligence artificielle (« Résumé IA ») ;</li>
+        <li>de consulter la signification des 78 cartes du tarot ;</li>
+        <li>de retrouver vos tirages dans un historique et un journal ;</li>
+        <li>de recevoir un rappel quotidien, si vous l'activez.</li>
+      </ul>
+      <p class="legal-callout"><strong>Avertissement</strong> : les cartes et les Résumés IA proposent une lecture symbolique, à visée de réflexion personnelle et de divertissement. <strong>Ils ne prédisent pas l'avenir</strong> et ne constituent ni un conseil professionnel (médical, psychologique, financier, juridique ou autre), ni une incitation à prendre ou ne pas prendre une décision. Vous restez seul responsable de vos choix et de vos interprétations.</p>
 
-        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-          pdf.getPage(pageNum).then(page => {
-            const scale = window.innerWidth < 768 ? 0.9 : 1.5;
-            const viewport = page.getViewport({ scale });
+      <h2 id="fr-offres">5. Offres gratuites et payantes</h2>
+      <h3>5.1 Version gratuite</h3>
+      <p>L'Application est téléchargeable gratuitement. La version gratuite donne accès aux tirages, à la consultation des cartes et à une partie de l'historique.</p>
+      <p>L'Éditeur peut offrir, à sa discrétion, des crédits de découverte (« gemmes ») permettant d'obtenir des Résumés IA. Le nombre de gemmes offertes et leurs conditions d'utilisation sont indiqués dans l'Application. Les gemmes n'ont aucune valeur monétaire, ne sont ni remboursables ni transférables, et l'Éditeur peut modifier ou arrêter ces offres à tout moment.</p>
 
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            container.appendChild(canvas);
+      <h3>5.2 Abonnement Premium</h3>
+      <p>L'abonnement Premium donne accès, pendant sa durée, à des Résumés IA illimités, à l'ensemble des tirages et à l'intégralité de l'historique et du journal. Il est proposé selon différentes durées (par exemple hebdomadaire ou annuelle), selon les offres disponibles dans l'Application.</p>
+      <p>Le prix, la devise et la durée de chaque abonnement sont affichés clairement dans l'Application avant l'achat. Ils peuvent varier selon votre pays (taxes locales, taux de change) et selon les offres en cours. Le prix affiché au moment de l'achat est garanti pour la période souscrite.</p>
 
-            const renderContext = {
-              canvasContext: context,
-              viewport: viewport
-            };
-            page.render(renderContext);
-          });
-        }
-      }).catch(error => {
-        container.innerHTML = `<p style="color: red;">Erreur lors du chargement du PDF.</p>`;
-        console.error(error);
-      });
-    }
+      <h3>5.3 Achat à l'unité</h3>
+      <p>Certaines lectures peuvent être débloquées par un achat unique, sans abonnement. Cet achat donne accès à la lecture concernée uniquement et n'entraîne aucun renouvellement.</p>
 
-    const currentLang = getLang();
-    loadPDF(currentLang);
-    // Le changement de langue (et le rechargement de la page) est géré par mystia.js
-  </script>
+      <h2 id="fr-paiement">6. Paiement, renouvellement et résiliation</h2>
+      <p>Les achats sont traités exclusivement par Apple (App Store) ou Google (Google Play), selon votre appareil, et sont soumis à leurs conditions. Nous n'avons jamais accès à vos données bancaires.</p>
+      <ul>
+        <li>Le paiement est débité sur votre compte Apple ou Google à la confirmation de l'achat.</li>
+        <li><strong>L'abonnement se renouvelle automatiquement</strong> à la fin de chaque période, au même prix et pour la même durée, sauf si vous le résiliez au moins 24 heures avant la fin de la période en cours. Le renouvellement est débité dans les 24 heures qui précèdent la fin de la période.</li>
+        <li>Vous pouvez gérer ou résilier votre abonnement à tout moment dans les réglages de votre compte Apple (Réglages › [votre nom] › Abonnements) ou Google Play (Play Store › Paiements et abonnements). La résiliation prend effet à la fin de la période en cours : vous gardez l'accès Premium jusqu'à cette date.</li>
+        <li><strong>Supprimer votre compte ou l'Application n'annule pas votre abonnement.</strong></li>
+        <li>Aucun remboursement partiel n'est accordé pour une période entamée, sauf disposition contraire des politiques d'Apple ou de Google ou de la loi applicable.</li>
+      </ul>
+
+      <h2 id="fr-retractation">7. Droit de rétractation et remboursements</h2>
+      <p>Les contenus de l'Application sont des contenus numériques fournis immédiatement après l'achat. Conformément à l'article L221-28 13° du Code de la consommation et à la directive 2011/83/UE, en validant votre achat, vous demandez l'accès immédiat au contenu et reconnaissez perdre votre droit de rétractation dès que ce contenu vous est fourni.</p>
+      <p>Les demandes de remboursement sont traitées par Apple ou Google selon leurs propres politiques : pour l'App Store, sur <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> ; pour Google Play, depuis votre historique de commandes Google Play.</p>
+
+      <h2 id="fr-obligations">8. Obligations de l'utilisateur</h2>
+      <p>Vous vous engagez à :</p>
+      <ul>
+        <li>utiliser l'Application conformément aux lois en vigueur et aux présentes Conditions ;</li>
+        <li>ne pas tenter d'accéder au code source de l'Application, de le décompiler ou de contourner ses mesures techniques (notamment l'accès aux fonctionnalités payantes) ;</li>
+        <li>ne pas utiliser le Service à des fins illicites (fraude, harcèlement, diffamation…) ;</li>
+        <li>respecter les droits de propriété intellectuelle de l'Éditeur et des tiers.</li>
+      </ul>
+
+      <h2 id="fr-pi">9. Propriété intellectuelle</h2>
+      <h3>9.1 Éléments de l'Éditeur</h3>
+      <p>L'Application et son contenu (notamment la marque Mystia, le nom commercial Garias Interactive, le code source, les textes, les illustrations, les logos, les mécanismes de tirage et les bases de données) sont protégés par le droit de la propriété intellectuelle et appartiennent à Monsieur Morgan NOUËT. Toute reproduction, représentation ou adaptation non autorisée est interdite.</p>
+      <h3>9.2 Illustrations</h3>
+      <p>Les illustrations de l'Application, dont les cartes de tarot, ont été créées par l'Éditeur ou pour son compte. Vous bénéficiez d'un droit d'usage privé, limité et non commercial de ces illustrations, dans le seul cadre de l'utilisation du Service.</p>
+      <h3>9.3 Contenus de l'utilisateur</h3>
+      <p>Vous restez propriétaire des textes que vous saisissez (questions, descriptions, journal). Vous accordez à l'Éditeur une licence non exclusive, gratuite et mondiale pour les utiliser aux seules fins de fournir le Service (dont la génération des Résumés IA), d'en assurer le fonctionnement technique, d'établir des statistiques et de l'améliorer, dans le respect de la <a href="privacy.html">Politique de confidentialité</a>.</p>
+
+      <h2 id="fr-conseil">10. Absence de conseil professionnel</h2>
+      <ol>
+        <li><strong>Pas de conseil</strong> : les informations fournies, y compris les Résumés IA, ne remplacent en aucun cas l'avis d'un professionnel qualifié (médecin, psychologue, conseiller financier, avocat…). Si vous traversez une situation difficile, adressez-vous à un professionnel ou aux services d'urgence de votre pays.</li>
+        <li><strong>Vos décisions</strong> : vous êtes seul responsable de vos décisions. L'Éditeur ne saurait être tenu responsable des conséquences de la confiance accordée à un tirage ou à un Résumé IA, de leur interprétation, ou de toute action ou absence d'action fondée sur ces contenus.</li>
+        <li><strong>Contenus générés automatiquement</strong> : les Résumés IA sont produits par un modèle d'intelligence artificielle et peuvent comporter des erreurs ou des imprécisions. Le Service est fourni « en l'état » et « selon disponibilité ».</li>
+      </ol>
+
+      <h2 id="fr-responsabilite">11. Limitation de responsabilité</h2>
+      <p>Dans la mesure permise par la loi, la responsabilité de l'Éditeur, tous dommages confondus, est limitée au montant que vous avez effectivement payé pour le Service au cours des 12 derniers mois. L'Éditeur n'est pas responsable des dommages indirects ou imprévisibles. Aucune disposition des présentes Conditions n'exclut ou ne limite la responsabilité que la loi interdit d'exclure ou de limiter, ni vos droits de consommateur.</p>
+
+      <h2 id="fr-suspension">12. Suspension et suppression du compte</h2>
+      <p>Nous pouvons suspendre ou supprimer votre accès au Service, sans préavis, en cas de violation des présentes Conditions, de fraude, ou sur demande d'une autorité compétente.</p>
+      <p>Vous pouvez supprimer votre compte à tout moment dans l'Application (<em>Paramètres › Supprimer mon compte</em>). Pensez à résilier votre abonnement auprès d'Apple ou de Google : la suppression du compte ne l'annule pas.</p>
+
+      <h2 id="fr-modifications">13. Modifications du service et des conditions</h2>
+      <p>Nous pouvons faire évoluer, modifier ou interrompre tout ou partie du Service, et mettre à jour les présentes Conditions pour tenir compte d'évolutions légales, techniques ou fonctionnelles. En cas de modification substantielle, vous en serez informé dans l'Application. Si vous n'acceptez pas les nouvelles Conditions, vous pouvez supprimer votre compte à tout moment, sans frais.</p>
+
+      <h2 id="fr-donnees">14. Données personnelles</h2>
+      <p>Le traitement de vos données personnelles est décrit dans notre <a href="privacy.html">Politique de confidentialité</a>. Vous pouvez exercer vos droits à l'adresse <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <h2 id="fr-tiers">15. Services tiers</h2>
+      <p>L'Application s'appuie sur des services tiers, notamment Apple et Google (connexion et paiement) et Google Gemini (génération des Résumés IA). L'Éditeur n'est pas responsable des contenus, pratiques ou politiques de ces tiers, dont nous vous invitons à consulter les conditions.</p>
+
+      <h2 id="fr-nullite">16. Nullité partielle</h2>
+      <p>Si une clause des présentes Conditions est déclarée nulle ou inapplicable, les autres clauses restent en vigueur. La clause concernée est remplacée par une clause valable aussi proche que possible de l'intention initiale.</p>
+
+      <h2 id="fr-droit">17. Droit applicable et litiges</h2>
+      <h3>17.1 Droit applicable</h3>
+      <p>Les présentes Conditions sont régies par le droit français. Vous bénéficiez en outre des dispositions impératives de protection des consommateurs de votre pays de résidence, lorsqu'elles sont plus favorables.</p>
+      <h3>17.2 Réclamation amiable</h3>
+      <p>Avant toute action, nous vous invitons à nous contacter à <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a> afin de rechercher une solution amiable.</p>
+      <h3>17.3 Utilisateurs hors de l'Union européenne</h3>
+      <p>Pour les utilisateurs résidant hors de l'Union européenne, et sauf si la loi locale l'interdit, tout litige relatif aux présentes Conditions sera résolu par un arbitrage définitif et contraignant, mené par voie électronique, et l'Utilisateur renonce à toute action de groupe.</p>
+      <h3>17.4 Juridiction</h3>
+      <p>À défaut de résolution amiable, les litiges relèvent des tribunaux compétents selon les règles de droit commun. Le consommateur résidant dans l'Union européenne peut saisir la juridiction de son lieu de résidence.</p>
+
+      <h2 id="fr-contact">18. Contact</h2>
+      <p>Pour toute question ou réclamation : <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Version précédente : <a href="terms/cgu_mystia_fr.pdf">CGU du 19 juin 2026 (PDF)</a></p>
+    </section>
+
+    <section class="legal-doc" data-legal-lang="en" lang="en" hidden>
+      <h1>Terms of Use and Sale</h1>
+      <p class="legal-meta">Mystia mobile app · Last updated: November 27, 2026</p>
+
+      <nav class="legal-toc" aria-label="Contents">
+        <ol>
+          <li><a href="#en-purpose">Purpose</a></li>
+          <li><a href="#en-acceptance">Acceptance of the terms</a></li>
+          <li><a href="#en-access">Access and eligibility</a></li>
+          <li><a href="#en-service">Description of the service</a></li>
+          <li><a href="#en-offers">Free and paid offers</a></li>
+          <li><a href="#en-payment">Payment, renewal and cancellation</a></li>
+          <li><a href="#en-withdrawal">Right of withdrawal and refunds</a></li>
+          <li><a href="#en-obligations">User obligations</a></li>
+          <li><a href="#en-ip">Intellectual property</a></li>
+          <li><a href="#en-advice">No professional advice</a></li>
+          <li><a href="#en-liability">Limitation of liability</a></li>
+          <li><a href="#en-suspension">Suspension and account deletion</a></li>
+          <li><a href="#en-changes">Changes to the service and the terms</a></li>
+          <li><a href="#en-data">Personal data</a></li>
+          <li><a href="#en-third">Third-party services</a></li>
+          <li><a href="#en-severability">Severability</a></li>
+          <li><a href="#en-law">Governing law and disputes</a></li>
+          <li><a href="#en-contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="en-purpose">1. Purpose</h2>
+      <p>These Terms of Use and Sale (the "Terms") set out the conditions under which <strong>Mr. Morgan NOUËT</strong>, operating under the trade name <strong>Garias Interactive</strong> (the "Publisher", "we" or "us") under a Business Project Support Contract (CAPE) with the business incubator <strong>Odacio</strong>, provides the <strong>Mystia</strong> mobile app (the "App"), a tarot and personal reflection app powered by artificial intelligence, and the related services (the "Service"). They also set out the rights and obligations of users ("User" or "you").</p>
+      <p>Legal, social and tax support for the business is provided by: <strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, simplified joint-stock company (SAS), registered office: 2 rue Braille, 17000 La Rochelle, France, RCS La Rochelle, SIREN 433 497 310, EU VAT number FR41433497310.</p>
+
+      <h2 id="en-acceptance">2. Acceptance of the terms</h2>
+      <p>By creating an account or using the App, you acknowledge that you have read and accepted these Terms. If you do not accept them, you must not use the App.</p>
+      <p>For iPhone users, these Terms apply in addition to <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple's standard Licensed Application End User License Agreement</a>.</p>
+
+      <h2 id="en-access">3. Access and eligibility</h2>
+      <p>The App is available on Apple's App Store and on Google Play. Using it requires creating an account with "Sign in with Apple" or "Sign in with Google".</p>
+      <p>You must be at least <strong>16 years old</strong> (or the higher age required in your country) and have the legal capacity to enter into a contract.</p>
+
+      <h2 id="en-service">4. Description of the service</h2>
+      <p>The App allows you in particular to:</p>
+      <ul>
+        <li>draw a card of the day every day and record your mood and tiredness level;</li>
+        <li>perform tarot readings, either in guided mode (the App suggests the spread that fits the situation you describe) or in manual mode (you choose the topic, the spread and your question);</li>
+        <li>receive a personalized summary of your readings generated by artificial intelligence ("AI Summary");</li>
+        <li>look up the meaning of the 78 tarot cards;</li>
+        <li>find your readings in a history and a journal;</li>
+        <li>receive a daily reminder, if you turn it on.</li>
+      </ul>
+      <p class="legal-callout"><strong>Disclaimer</strong>: the cards and AI Summaries offer a symbolic reading intended for personal reflection and entertainment. <strong>They do not predict the future</strong> and are neither professional advice (medical, psychological, financial, legal or otherwise) nor an encouragement to make or not make any decision. You remain solely responsible for your choices and interpretations.</p>
+
+      <h2 id="en-offers">5. Free and paid offers</h2>
+      <h3>5.1 Free version</h3>
+      <p>The App can be downloaded for free. The free version gives access to readings, the card library and part of the history.</p>
+      <p>The Publisher may, at its discretion, offer discovery credits ("gems") that can be used to obtain AI Summaries. The number of gems offered and how they can be used are shown in the App. Gems have no monetary value, are neither refundable nor transferable, and the Publisher may change or end these offers at any time.</p>
+
+      <h3>5.2 Premium subscription</h3>
+      <p>The Premium subscription gives access, for its duration, to unlimited AI Summaries, all spreads, and the full history and journal. It is offered for different durations (for example weekly or yearly), depending on the offers available in the App.</p>
+      <p>The price, currency and duration of each subscription are clearly displayed in the App before purchase. They may vary by country (local taxes, exchange rates) and with current offers. The price shown at the time of purchase is guaranteed for the subscribed period.</p>
+
+      <h3>5.3 One-time purchase</h3>
+      <p>Some readings can be unlocked with a one-time purchase, without a subscription. This purchase only gives access to the reading concerned and does not renew.</p>
+
+      <h2 id="en-payment">6. Payment, renewal and cancellation</h2>
+      <p>Purchases are processed exclusively by Apple (App Store) or Google (Google Play), depending on your device, and are subject to their terms. We never have access to your payment details.</p>
+      <ul>
+        <li>Payment is charged to your Apple or Google account at confirmation of purchase.</li>
+        <li><strong>The subscription renews automatically</strong> at the end of each period, at the same price and for the same duration, unless you cancel it at least 24 hours before the end of the current period. The renewal is charged within the 24 hours before the end of the period.</li>
+        <li>You can manage or cancel your subscription at any time in your Apple account settings (Settings › [your name] › Subscriptions) or on Google Play (Play Store › Payments &amp; subscriptions). Cancellation takes effect at the end of the current period: you keep Premium access until then.</li>
+        <li><strong>Deleting your account or the App does not cancel your subscription.</strong></li>
+        <li>No partial refund is granted for a period that has started, unless otherwise provided by Apple's or Google's policies or by applicable law.</li>
+      </ul>
+
+      <h2 id="en-withdrawal">7. Right of withdrawal and refunds</h2>
+      <p>The App's content is digital content supplied immediately after purchase. In accordance with Article L221-28 13° of the French Consumer Code and Directive 2011/83/EU, by confirming your purchase you request immediate access to the content and acknowledge that you lose your right of withdrawal once the content has been supplied.</p>
+      <p>Refund requests are handled by Apple or Google under their own policies: for the App Store, at <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>; for Google Play, from your Google Play order history.</p>
+
+      <h2 id="en-obligations">8. User obligations</h2>
+      <p>You agree to:</p>
+      <ul>
+        <li>use the App in accordance with applicable laws and these Terms;</li>
+        <li>not attempt to access the App's source code, decompile it or circumvent its technical measures (including access to paid features);</li>
+        <li>not use the Service for unlawful purposes (fraud, harassment, defamation, etc.);</li>
+        <li>respect the intellectual property rights of the Publisher and third parties.</li>
+      </ul>
+
+      <h2 id="en-ip">9. Intellectual property</h2>
+      <h3>9.1 Publisher's content</h3>
+      <p>The App and its content (including the Mystia brand, the Garias Interactive trade name, source code, texts, illustrations, logos, drawing mechanisms and databases) are protected by intellectual property law and belong to Mr. Morgan NOUËT. Any unauthorized reproduction, representation or adaptation is prohibited.</p>
+      <h3>9.2 Illustrations</h3>
+      <p>The App's illustrations, including the tarot cards, were created by or on behalf of the Publisher. You have a private, limited and non-commercial right to use these illustrations, solely within the use of the Service.</p>
+      <h3>9.3 User content</h3>
+      <p>You remain the owner of the text you enter (questions, descriptions, journal). You grant the Publisher a non-exclusive, free, worldwide license to use it solely to provide the Service (including generating AI Summaries), to keep it running technically, to produce statistics and to improve it, in accordance with the <a href="privacy.html">Privacy Policy</a>.</p>
+
+      <h2 id="en-advice">10. No professional advice</h2>
+      <ol>
+        <li><strong>No advice</strong>: the information provided, including AI Summaries, never replaces the advice of a qualified professional (doctor, psychologist, financial advisor, lawyer, etc.). If you are going through a difficult time, please reach out to a professional or to the emergency services in your country.</li>
+        <li><strong>Your decisions</strong>: you are solely responsible for your decisions. The Publisher cannot be held liable for the consequences of relying on a reading or an AI Summary, of how they are interpreted, or of any action or inaction based on this content.</li>
+        <li><strong>Automatically generated content</strong>: AI Summaries are produced by an artificial intelligence model and may contain errors or inaccuracies. The Service is provided "as is" and "as available".</li>
+      </ol>
+
+      <h2 id="en-liability">11. Limitation of liability</h2>
+      <p>To the extent permitted by law, the Publisher's total liability for all damages is limited to the amount you actually paid for the Service during the last 12 months. The Publisher is not liable for indirect or unforeseeable damages. Nothing in these Terms excludes or limits liability that cannot be excluded or limited by law, or your rights as a consumer.</p>
+
+      <h2 id="en-suspension">12. Suspension and account deletion</h2>
+      <p>We may suspend or terminate your access to the Service, without notice, in the event of a breach of these Terms, fraud, or at the request of a competent authority.</p>
+      <p>You can delete your account at any time in the App (<em>Settings › Delete account</em>). Remember to cancel your subscription with Apple or Google: deleting your account does not cancel it.</p>
+
+      <h2 id="en-changes">13. Changes to the service and the terms</h2>
+      <p>We may develop, modify or discontinue all or part of the Service, and update these Terms to reflect legal, technical or product changes. If a substantial change is made, you will be informed in the App. If you do not accept the new Terms, you can delete your account at any time, free of charge.</p>
+
+      <h2 id="en-data">14. Personal data</h2>
+      <p>How we process your personal data is described in our <a href="privacy.html">Privacy Policy</a>. You can exercise your rights by writing to <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <h2 id="en-third">15. Third-party services</h2>
+      <p>The App relies on third-party services, including Apple and Google (sign-in and payment) and Google Gemini (generation of AI Summaries). The Publisher is not responsible for the content, practices or policies of these third parties, whose terms we invite you to read.</p>
+
+      <h2 id="en-severability">16. Severability</h2>
+      <p>If any provision of these Terms is held invalid or unenforceable, the other provisions remain in force. The provision concerned is replaced by a valid provision as close as possible to the original intent.</p>
+
+      <h2 id="en-law">17. Governing law and disputes</h2>
+      <h3>17.1 Governing law</h3>
+      <p>These Terms are governed by French law. You also benefit from the mandatory consumer protection provisions of your country of residence, where they are more favorable.</p>
+      <h3>17.2 Amicable complaint</h3>
+      <p>Before taking any action, please contact us at <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a> so that we can look for an amicable solution.</p>
+      <h3>17.3 Users outside the European Union</h3>
+      <p>For users residing outside the European Union, and unless prohibited by local law, any dispute relating to these Terms will be resolved by final and binding arbitration conducted online, and the User waives any class action.</p>
+      <h3>17.4 Jurisdiction</h3>
+      <p>Failing an amicable resolution, disputes fall under the competent courts according to the ordinary rules of law. Consumers residing in the European Union may bring proceedings before the courts of their place of residence.</p>
+
+      <h2 id="en-contact">18. Contact</h2>
+      <p>For any question or complaint: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Previous version: <a href="terms/cgu_mystia_en.pdf">terms of June 19, 2026 (PDF)</a></p>
+    </section>
+
+    <section class="legal-doc" data-legal-lang="ro" lang="ro" hidden>
+      <h1>Termeni și condiții de utilizare și vânzare</h1>
+      <p class="legal-meta">Aplicația mobilă Mystia · Ultima actualizare: 27 noiembrie 2026</p>
+
+      <nav class="legal-toc" aria-label="Cuprins">
+        <ol>
+          <li><a href="#ro-obiect">Obiect</a></li>
+          <li><a href="#ro-acceptare">Acceptarea termenilor</a></li>
+          <li><a href="#ro-acces">Acces și eligibilitate</a></li>
+          <li><a href="#ro-serviciu">Descrierea serviciului</a></li>
+          <li><a href="#ro-oferte">Oferte gratuite și cu plată</a></li>
+          <li><a href="#ro-plata">Plată, reînnoire și anulare</a></li>
+          <li><a href="#ro-retragere">Dreptul de retragere și rambursări</a></li>
+          <li><a href="#ro-obligatii">Obligațiile utilizatorului</a></li>
+          <li><a href="#ro-pi">Proprietate intelectuală</a></li>
+          <li><a href="#ro-consiliere">Lipsa consilierii profesionale</a></li>
+          <li><a href="#ro-raspundere">Limitarea răspunderii</a></li>
+          <li><a href="#ro-suspendare">Suspendarea și ștergerea contului</a></li>
+          <li><a href="#ro-modificari">Modificarea serviciului și a termenilor</a></li>
+          <li><a href="#ro-date">Date personale</a></li>
+          <li><a href="#ro-terti">Servicii terțe</a></li>
+          <li><a href="#ro-nulitate">Nulitate parțială</a></li>
+          <li><a href="#ro-lege">Legea aplicabilă și litigii</a></li>
+          <li><a href="#ro-contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="ro-obiect">1. Obiect</h2>
+      <p>Prezenții Termeni și condiții de utilizare și vânzare („Termenii”) stabilesc condițiile în care <strong>domnul Morgan NOUËT</strong>, care activează sub denumirea comercială <strong>Garias Interactive</strong> („Editorul” sau „noi”), în cadrul unui Contract de Sprijin pentru Proiectul de Întreprindere (CAPE) încheiat cu incubatorul de afaceri <strong>Odacio</strong>, pune la dispoziție aplicația mobilă <strong>Mystia</strong> („Aplicația”), aplicație de tarot și de reflecție personală asistată de inteligența artificială, precum și serviciile asociate („Serviciul”). Ei stabilesc, de asemenea, drepturile și obligațiile utilizatorilor („Utilizatorul” sau „tu”).</p>
+      <p>Suportul juridic, social și fiscal al activității este asigurat de: <strong>ODACIO – Couveuse d'entrepreneurs de Charente-Maritime</strong>, societate pe acțiuni simplificată (SAS), sediul social: 2 rue Braille, 17000 La Rochelle, Franța, RCS La Rochelle, SIREN 433 497 310, cod TVA intracomunitar FR41433497310.</p>
+
+      <h2 id="ro-acceptare">2. Acceptarea termenilor</h2>
+      <p>Prin crearea unui cont sau prin utilizarea Aplicației, confirmi că ai citit și ai acceptat prezenții Termeni. Dacă nu îi accepți, nu trebuie să folosești Aplicația.</p>
+      <p>Pentru utilizatorii de iPhone, prezenții Termeni se aplică în completarea <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">contractului de licență standard pentru utilizatorul final al Apple</a>.</p>
+
+      <h2 id="ro-acces">3. Acces și eligibilitate</h2>
+      <p>Aplicația este disponibilă în App Store de la Apple și pe Google Play. Utilizarea ei necesită crearea unui cont prin „Conectează-te cu Apple” sau „Conectează-te cu Google”.</p>
+      <p>Trebuie să ai cel puțin <strong>16 ani</strong> (sau vârsta mai mare cerută în țara ta) și capacitatea juridică de a încheia un contract.</p>
+
+      <h2 id="ro-serviciu">4. Descrierea serviciului</h2>
+      <p>Aplicația îți permite în special:</p>
+      <ul>
+        <li>să extragi în fiecare zi o carte a zilei și să îți indici starea de spirit și nivelul de oboseală;</li>
+        <li>să faci extrageri de tarot, fie în modul ghidat (Aplicația îți propune extragerea potrivită situației pe care o descrii), fie în modul manual (alegi tema, extragerea și întrebarea);</li>
+        <li>să primești un rezumat personalizat al extragerilor tale, generat de inteligența artificială („Rezumat IA”);</li>
+        <li>să consulți semnificația celor 78 de cărți de tarot;</li>
+        <li>să îți regăsești extragerile într-un istoric și într-un jurnal;</li>
+        <li>să primești un memento zilnic, dacă îl activezi.</li>
+      </ul>
+      <p class="legal-callout"><strong>Avertisment</strong>: cărțile și Rezumatele IA propun o lectură simbolică, în scop de reflecție personală și de divertisment. <strong>Ele nu prezic viitorul</strong> și nu constituie nici o consiliere profesională (medicală, psihologică, financiară, juridică sau de altă natură), nici o încurajare de a lua sau de a nu lua o decizie. Rămâi singurul responsabil pentru alegerile și interpretările tale.</p>
+
+      <h2 id="ro-oferte">5. Oferte gratuite și cu plată</h2>
+      <h3>5.1 Versiunea gratuită</h3>
+      <p>Aplicația poate fi descărcată gratuit. Versiunea gratuită oferă acces la extrageri, la consultarea cărților și la o parte din istoric.</p>
+      <p>Editorul poate oferi, la discreția sa, credite de descoperire („geme”) care permit obținerea de Rezumate IA. Numărul de geme oferite și condițiile de utilizare sunt indicate în Aplicație. Gemele nu au valoare monetară, nu sunt rambursabile și nici transferabile, iar Editorul poate modifica sau opri aceste oferte în orice moment.</p>
+
+      <h3>5.2 Abonamentul Premium</h3>
+      <p>Abonamentul Premium oferă acces, pe durata sa, la Rezumate IA nelimitate, la toate extragerile și la întregul istoric și jurnal. Este propus pentru diferite durate (de exemplu săptămânal sau anual), în funcție de ofertele disponibile în Aplicație.</p>
+      <p>Prețul, moneda și durata fiecărui abonament sunt afișate clar în Aplicație înainte de cumpărare. Ele pot varia în funcție de țara ta (taxe locale, curs de schimb) și de ofertele în curs. Prețul afișat în momentul cumpărării este garantat pentru perioada contractată.</p>
+
+      <h3>5.3 Achiziție unică</h3>
+      <p>Anumite lecturi pot fi deblocate printr-o achiziție unică, fără abonament. Această achiziție oferă acces doar la lectura respectivă și nu se reînnoiește.</p>
+
+      <h2 id="ro-plata">6. Plată, reînnoire și anulare</h2>
+      <p>Achizițiile sunt procesate exclusiv de Apple (App Store) sau Google (Google Play), în funcție de dispozitivul tău, și sunt supuse condițiilor acestora. Nu avem niciodată acces la datele tale bancare.</p>
+      <ul>
+        <li>Plata este debitată din contul tău Apple sau Google la confirmarea achiziției.</li>
+        <li><strong>Abonamentul se reînnoiește automat</strong> la sfârșitul fiecărei perioade, la același preț și pentru aceeași durată, cu excepția cazului în care îl anulezi cu cel puțin 24 de ore înainte de sfârșitul perioadei în curs. Reînnoirea este debitată în cele 24 de ore care preced sfârșitul perioadei.</li>
+        <li>Îți poți gestiona sau anula abonamentul oricând din setările contului Apple (Configurări › [numele tău] › Abonamente) sau din Google Play (Magazin Play › Plăți și abonamente). Anularea intră în vigoare la sfârșitul perioadei în curs: păstrezi accesul Premium până la acea dată.</li>
+        <li><strong>Ștergerea contului sau a Aplicației nu anulează abonamentul.</strong></li>
+        <li>Nu se acordă rambursări parțiale pentru o perioadă începută, cu excepția cazului în care politicile Apple sau Google ori legea aplicabilă prevăd altfel.</li>
+      </ul>
+
+      <h2 id="ro-retragere">7. Dreptul de retragere și rambursări</h2>
+      <p>Conținutul Aplicației este conținut digital furnizat imediat după cumpărare. În conformitate cu articolul L221-28 punctul 13 din Codul francez al consumului și cu Directiva 2011/83/UE, prin confirmarea achiziției soliciți accesul imediat la conținut și recunoști că îți pierzi dreptul de retragere odată ce conținutul ți-a fost furnizat.</p>
+      <p>Cererile de rambursare sunt gestionate de Apple sau Google, conform propriilor politici: pentru App Store, pe <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>; pentru Google Play, din istoricul comenzilor tale Google Play.</p>
+
+      <h2 id="ro-obligatii">8. Obligațiile utilizatorului</h2>
+      <p>Te angajezi:</p>
+      <ul>
+        <li>să folosești Aplicația în conformitate cu legile în vigoare și cu prezenții Termeni;</li>
+        <li>să nu încerci să accesezi codul sursă al Aplicației, să îl decompilezi sau să ocolești măsurile tehnice ale acesteia (în special accesul la funcțiile cu plată);</li>
+        <li>să nu folosești Serviciul în scopuri ilegale (fraudă, hărțuire, defăimare etc.);</li>
+        <li>să respecți drepturile de proprietate intelectuală ale Editorului și ale terților.</li>
+      </ul>
+
+      <h2 id="ro-pi">9. Proprietate intelectuală</h2>
+      <h3>9.1 Elementele Editorului</h3>
+      <p>Aplicația și conținutul ei (în special marca Mystia, denumirea comercială Garias Interactive, codul sursă, textele, ilustrațiile, siglele, mecanismele de extragere și bazele de date) sunt protejate de legislația privind proprietatea intelectuală și aparțin domnului Morgan NOUËT. Orice reproducere, reprezentare sau adaptare neautorizată este interzisă.</p>
+      <h3>9.2 Ilustrații</h3>
+      <p>Ilustrațiile Aplicației, inclusiv cărțile de tarot, au fost create de Editor sau în numele acestuia. Beneficiezi de un drept de utilizare privat, limitat și necomercial al acestor ilustrații, exclusiv în cadrul utilizării Serviciului.</p>
+      <h3>9.3 Conținutul utilizatorului</h3>
+      <p>Rămâi proprietarul textelor pe care le introduci (întrebări, descrieri, jurnal). Acorzi Editorului o licență neexclusivă, gratuită și mondială de a le folosi exclusiv pentru furnizarea Serviciului (inclusiv generarea Rezumatelor IA), pentru funcționarea sa tehnică, pentru realizarea de statistici și pentru îmbunătățirea lui, cu respectarea <a href="privacy.html">Politicii de confidențialitate</a>.</p>
+
+      <h2 id="ro-consiliere">10. Lipsa consilierii profesionale</h2>
+      <ol>
+        <li><strong>Fără consiliere</strong>: informațiile furnizate, inclusiv Rezumatele IA, nu înlocuiesc în niciun caz sfatul unui profesionist calificat (medic, psiholog, consilier financiar, avocat etc.). Dacă treci printr-o perioadă dificilă, adresează-te unui profesionist sau serviciilor de urgență din țara ta.</li>
+        <li><strong>Deciziile tale</strong>: ești singurul responsabil pentru deciziile tale. Editorul nu poate fi tras la răspundere pentru consecințele încrederii acordate unei extrageri sau unui Rezumat IA, pentru interpretarea acestora ori pentru orice acțiune sau lipsă de acțiune bazată pe acest conținut.</li>
+        <li><strong>Conținut generat automat</strong>: Rezumatele IA sunt produse de un model de inteligență artificială și pot conține erori sau inexactități. Serviciul este furnizat „ca atare” și „în funcție de disponibilitate”.</li>
+      </ol>
+
+      <h2 id="ro-raspundere">11. Limitarea răspunderii</h2>
+      <p>În măsura permisă de lege, răspunderea totală a Editorului, pentru toate prejudiciile, este limitată la suma pe care ai plătit-o efectiv pentru Serviciu în ultimele 12 luni. Editorul nu răspunde pentru prejudiciile indirecte sau imprevizibile. Nicio prevedere a prezenților Termeni nu exclude sau limitează răspunderea pe care legea interzice să fie exclusă sau limitată, nici drepturile tale de consumator.</p>
+
+      <h2 id="ro-suspendare">12. Suspendarea și ștergerea contului</h2>
+      <p>Putem suspenda sau închide accesul tău la Serviciu, fără preaviz, în caz de încălcare a prezenților Termeni, de fraudă sau la cererea unei autorități competente.</p>
+      <p>Îți poți șterge contul oricând din Aplicație (<em>Setări › Șterge-mi contul</em>). Nu uita să îți anulezi abonamentul la Apple sau Google: ștergerea contului nu îl anulează.</p>
+
+      <h2 id="ro-modificari">13. Modificarea serviciului și a termenilor</h2>
+      <p>Putem dezvolta, modifica sau întrerupe Serviciul, în totalitate sau parțial, și putem actualiza prezenții Termeni pentru a ține cont de schimbări legale, tehnice sau funcționale. În cazul unei modificări substanțiale, vei fi informat în Aplicație. Dacă nu accepți noii Termeni, îți poți șterge contul oricând, fără costuri.</p>
+
+      <h2 id="ro-date">14. Date personale</h2>
+      <p>Prelucrarea datelor tale personale este descrisă în <a href="privacy.html">Politica noastră de confidențialitate</a>. Îți poți exercita drepturile scriind la <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <h2 id="ro-terti">15. Servicii terțe</h2>
+      <p>Aplicația se bazează pe servicii terțe, în special Apple și Google (conectare și plată) și Google Gemini (generarea Rezumatelor IA). Editorul nu este responsabil pentru conținutul, practicile sau politicile acestor terți, ale căror condiții te invităm să le consulți.</p>
+
+      <h2 id="ro-nulitate">16. Nulitate parțială</h2>
+      <p>Dacă o prevedere a prezenților Termeni este declarată nulă sau inaplicabilă, celelalte prevederi rămân în vigoare. Prevederea în cauză este înlocuită cu o prevedere valabilă, cât mai apropiată de intenția inițială.</p>
+
+      <h2 id="ro-lege">17. Legea aplicabilă și litigii</h2>
+      <h3>17.1 Legea aplicabilă</h3>
+      <p>Prezenții Termeni sunt guvernați de legea franceză. Beneficiezi în plus de prevederile imperative de protecție a consumatorilor din țara ta de reședință, atunci când acestea sunt mai favorabile.</p>
+      <h3>17.2 Reclamație amiabilă</h3>
+      <p>Înainte de orice acțiune, te invităm să ne contactezi la <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a> pentru a căuta o soluție amiabilă.</p>
+      <h3>17.3 Utilizatori din afara Uniunii Europene</h3>
+      <p>Pentru utilizatorii care locuiesc în afara Uniunii Europene și cu excepția cazului în care legea locală interzice acest lucru, orice litigiu privind prezenții Termeni va fi soluționat printr-un arbitraj definitiv și obligatoriu, desfășurat online, iar Utilizatorul renunță la orice acțiune colectivă.</p>
+      <h3>17.4 Instanța competentă</h3>
+      <p>În lipsa unei soluții amiabile, litigiile sunt de competența instanțelor stabilite conform regulilor de drept comun. Consumatorul care locuiește în Uniunea Europeană se poate adresa instanței de la locul său de reședință.</p>
+
+      <h2 id="ro-contact">18. Contact</h2>
+      <p>Pentru orice întrebare sau reclamație: <a href="mailto:my.mystia.contact@gmail.com">my.mystia.contact@gmail.com</a>.</p>
+
+      <p class="legal-archive">Versiunea anterioară: <a href="terms/cgu_mystia_ro.pdf">termenii din 19 iunie 2026 (PDF)</a></p>
+    </section>
+  </main>
 
   <nav class="nav-mobile hide" id="navMobile">
     <a href="index.html" data-i18n="menu_home">Accueil</a>

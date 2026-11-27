@@ -322,6 +322,15 @@ function setLang(lang) {
     document.documentElement.lang = lang;
     updateLangBtn(lang);
 
+    // Pages juridiques : affiche le bloc de la langue choisie, le français à défaut
+    const legalBlocks = document.querySelectorAll('[data-legal-lang]');
+    if (legalBlocks.length) {
+        const hasLang = Array.from(legalBlocks).some(b => b.dataset.legalLang === lang);
+        legalBlocks.forEach(b => {
+            b.hidden = b.dataset.legalLang !== (hasLang ? lang : 'fr');
+        });
+    }
+
     // Traductions texte
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
